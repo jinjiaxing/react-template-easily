@@ -1,0 +1,28 @@
+div.frc_tost{
+  min-width: 8rem;
+  max-width: 6rem;
+  width:auto;
+  height:auto;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  line-height: 1.1rem;
+  padding: .7rem 0;
+  border-radius: 0.5rem;
+  position: fixed;
+  margin: auto;
+  z-index: 4;
+  bottom: 12%;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity .5s linear;
+}
+
+div.frc_tost_fadein {
+  opacity: 100;
+}
+
+div.frc_tost_fadeout {
+  opacity: 0;
+}

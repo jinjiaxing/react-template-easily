@@ -1,0 +1,52 @@
+$input_field_height: 2.5rem;
+$input_border_color: #eaeaea;
+$clear_icon_size: .6rem;
+$clear_icon_fontSize: .4rem;
+
+.input_field_component {
+  position: relative;
+  height: 100%;
+
+  .input_field {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    height: $input_field_height;
+    line-height: $input_field_height;
+    border-top: 1px solid $input_border_color;
+    border-bottom: 1px solid $input_border_color;
+    width: 100%;
+    &::-webkit-input-placeholder {
+      color: #cccccc;
+      font-size: .8rem;
+    }
+  }
+
+  .clear_container {
+    position: absolute;
+    width: 60px;
+    height: 2.5rem;
+    right: 0;
+    top: 0;
+    margin: auto;
+    bottom: 0;
+  }
+  .input_field_clear {
+    display: none;
+    background-image:url("./image/clear.png");
+    position: absolute;
+    right: .5rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    zoom: .5;
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+  }
+
+  .input_field:valid + .clear_container .input_field_clear {
+    display: inline;
+  }
+}

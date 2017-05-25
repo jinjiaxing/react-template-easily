@@ -1,0 +1,118 @@
+@import "compass/css3";
+@import "compass/css3/animation";
+
+$loading-size: 0.4rem;
+$loading-gap: 0.18s;
+$control-base-size: 2.75rem;
+
+@mixin childPosition() {
+  position: absolute;
+  left:0;
+  right:0;
+  bottom: 0;
+  top:0;
+  margin: auto;
+}
+
+.frc_loading_container{
+  position: fixed;
+  z-index: 2000;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  background: rgba(128, 128, 128, 0.27);
+}
+
+.frc_loading {
+  height: $control-base-size;
+  width: $control-base-size;
+  position: relative;
+  display: inline-block;
+  @include childPosition();
+}
+
+.frc_loading-dot {
+  background: #666666;
+  border-radius: 50%;
+  height: $loading-size;
+  position: absolute;
+  left: 50%;
+  top: $control-base-size / 2;
+  width: $loading-size;
+  transform: scale(0.7);
+  @include animation(ball-spin-fade-loader $loading-gap * 8 $loading-gap * 0 infinite linear);
+
+  &:nth-child(1) {
+    margin-left: -$loading-size / 2;
+    margin-top: -$loading-size / 2 - $loading-size * 1.6;
+  }
+
+  &:nth-child(2) {
+    margin-left: -$loading-size / 2 + $loading-size * 1.152;
+    margin-top: -$loading-size / 2 - $loading-size * 1.152;
+    @include animation-delay($loading-gap * 1);
+  }
+
+  &:nth-child(3) {
+    margin-left: -$loading-size / 2 + $loading-size * 1.6;
+    margin-top: -$loading-size / 2;
+    @include animation-delay($loading-gap * 2);
+  }
+
+  &:nth-child(4) {
+    margin-left: -$loading-size / 2 + $loading-size * 1.152;
+    margin-top: -$loading-size / 2 + $loading-size * 1.152;
+    @include animation-delay($loading-gap * 3);
+  }
+
+  &:nth-child(5) {
+    margin-left: -$loading-size / 2;
+    margin-top: -$loading-size / 2 + $loading-size * 1.6;
+    @include animation-delay($loading-gap * 4);
+  }
+
+  &:nth-child(6) {
+    margin-left: -$loading-size / 2 - $loading-size * 1.152;
+    margin-top: -$loading-size / 2 + $loading-size * 1.152;
+    @include animation-delay($loading-gap * 5);
+  }
+
+  &:nth-child(7) {
+    margin-left: -$loading-size / 2 - $loading-size * 1.6;
+    margin-top: -$loading-size / 2;
+    @include animation-delay($loading-gap * 6);
+  }
+
+  &:nth-child(8) {
+    margin-left: -$loading-size / 2 - $loading-size * 1.152;
+    margin-top: -$loading-size / 2 - $loading-size * 1.152;
+    @include animation-delay($loading-gap * 7);
+  }
+}
+
+@include keyframes(ball-spin-fade-loader) {
+  50% {
+    opacity: 0.2;
+    @include transform(scale(0.4));
+  }
+  100% {
+    opacity: 0.6;
+    @include transform(scale(0.8));
+  }
+}
+
+
+img.frc_loading_img {
+  @include childPosition();
+  @include animation(loading 1s linear infinite)
+}
+
+@include keyframes(loading) {
+  0% {
+    @include transform(rotate(0deg));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+}

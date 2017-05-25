@@ -1,0 +1,114 @@
+
+#com_dialog {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.com_dialog {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .dialog_mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #000000;
+    opacity: 0.3;
+    z-index: 3;
+  }
+
+  .dialog_content {
+    position: relative;
+    bottom: 1rem;
+    width: 12.5rem;
+    margin: auto;
+    background-color: #ffffff;
+    z-index: 4;
+    border-radius: 2px;
+  }
+
+  .dialog_closed {
+    position: absolute;
+    right: 0.4rem;
+    top: 0.3rem;
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+
+  .dialog_icon {
+    display: flex;
+    justify-content: center;
+    .frc_icon {
+      width: 6.3rem;
+      height: 7.2rem;
+      background-position: center;
+      background-size: contain;
+      text-align: center;
+      margin-top: -4.5rem;
+    }
+  }
+
+  .dialog_title_content {
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 0.9rem;
+    margin-top: 1rem;
+    margin-bottom: 0.8rem;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333333;
+
+
+    .status_title {
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    .status_content {
+      font-size: 0.7rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+
+  .dialog_btn_group {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    display: flex;
+    border-top: 1px solid #e6e6e6;
+    box-sizing: border-box;
+
+    button {
+      flex:1;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 0.7rem;
+      &:first-of-type {
+        border-bottom-left-radius: 2px
+      }
+      &:last-of-type {
+        border-bottom-right-radius: 2px;
+      }
+    }
+    .btn1 {
+      background-color: #f4f4f4;
+      color: #333333;
+    }
+    .btn2 {
+      background-color: #f54336;
+      color: #ffffff;
+    }
+  }
+
+}

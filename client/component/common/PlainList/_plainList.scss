@@ -1,0 +1,156 @@
+@import "compass/css3";
+
+
+$gap : .5rem; //列表左右间隙
+$border-color : #ccc; // item中的border颜色
+$back-color: #fff; //item背景色
+$bottom-padding: .5rem; //item下半部分的上下间距
+$font-size: .8rem;
+
+@mixin vertical-block($height) {
+  height: $height;
+  line-height: $height;
+}
+
+@mixin ellipsis($width) {
+  max-width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+.dis-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.box-vertical {
+  -webkit-box-orient: vertical;
+  box-orient: vertical
+}
+
+.box-horizontal {
+  -webkit-box-orient: horizontal;
+  box-orient: horizontal
+}
+
+.flex {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.md-scroll-mask {
+  position: initial;
+}
+
+
+#plainList {
+  .list-container li {
+    position: relative;
+    padding: $gap;
+    background-color: $back-color;
+    &:after {
+      display: inline-block;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      border-top: 1px solid $border-color;
+      @include transform(scaleY(.5))
+    }
+    .content-top {
+      @include box-sizing(border-box);
+      width: 100%;
+      padding-right: $gap;
+      @extend .dis-box;
+      position: relative;
+      font-size: $font-size;
+      p:first-child {
+        display: inline-block;
+        @include ellipsis($width: 8rem);
+      }
+
+      .cancel {
+        font-size: $font-size * 0.9;
+        color: #c0c0c0;
+      }
+    }
+
+    .demon-checkbox {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      height: 25px;
+      width: 25px;
+      opacity: 0;
+      outline: 0!important;
+      @include transform(translateY(-50%));
+    }
+
+    .check-icon {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      height: 25px;
+      width: 25px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      outline: 0!important;
+      @include transform(translateY(-50%));
+    }
+
+    .demon-uncheck {
+      background-image: url('./img/uncheck.png');
+    }
+
+    .demon-checked {
+      background-image: url('./img/checked.png');
+    }
+  }
+
+  .fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@include keyframes($name: fadeInDown) {
+  from {
+    opacity: 0;
+    @include transform(translate3d(0, -100%, 0));
+  }
+
+  to {
+    opacity: 1;
+    @include transform(none);
+  }
+}

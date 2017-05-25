@@ -1,0 +1,11 @@
+#pagehome{
+  height:100%;
+
+  .open_in_browser {
+    position: fixed;
+    width: 25rem;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+}

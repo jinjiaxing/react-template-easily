@@ -1,0 +1,73 @@
+@import "compass/css3";
+
+$titleBar_height: 2.6rem;
+
+// 清除浮动
+.clearfix {
+  *zoom: 1
+}
+
+.clearfix:after {
+  display: block;
+  height: 0;
+  content: ".";
+  visibility: hidden;
+  clear: both
+}
+
+.frc_titleBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  line-height: $titleBar_height;
+  text-align: center;
+  background-color: #ffffff;
+  z-index: 100;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid #eaeaea;
+    @include transform(scaleY(0.5));
+  }
+
+  .go_back_icon {
+    zoom: .5;
+    background: url("./img/back.png") no-repeat left center;
+    &:active {
+      background: url("./img/back_p.png") no-repeat left center;
+    }
+  }
+
+  .frc_titleName  {
+    font-size: 1rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+  }
+
+  .frc_left_titleBar {
+    display: inline-block;
+    vertical-align: middle;
+    width: 75px;
+    font-size: .6rem;
+    height: $titleBar_height;
+    float: left;
+  }
+  .frc_right_titleBar {
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width: 75px;
+    font-size: .6rem;
+    height: $titleBar_height;
+    float: right;
+  }
+
+}

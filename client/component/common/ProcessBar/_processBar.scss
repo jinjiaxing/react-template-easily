@@ -1,0 +1,23 @@
+$p_radius:0.8rem;
+
+.frc_processbar{
+  border-radius: $p_radius;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .process{
+    height:100%;
+    border-radius: $p_radius;
+    align-self: flex-start;
+    position: absolute;
+    top: 0;
+  }
+  .text{
+    z-index: 1;
+    color:red;
+    font-size: 12px;
+  }
+
+}

@@ -1,0 +1,72 @@
+$borderColor: #e7e7e7;
+$feedBorderColor: #dcdcdc;
+$btnPress_bgColor:#c3362a;
+$btnPress_color:rgba(255, 255, 255, 0.4);
+$tabHeight: 2.2rem;
+$tabFontSize: .8rem;
+$rectHeight: 1.1rem;
+
+$palette-grey:
+        "250,250,250"
+        "245,245,245"
+        "238,238,238"
+        "224,224,224"
+        "189,189,189"
+        "158,158,158"
+        "117,117,117"
+        "97,97,97"
+        "66,66,66"
+        "33,33,33";
+
+$palette-grey-50: nth($palette-grey, 1);
+$palette-grey-300: nth($palette-grey, 4);
+
+$layout-drawer-bg-color: unquote("rgb(#{$palette-grey-50})") !default;
+$layout-drawer-border-color: unquote("rgb(#{$palette-grey-300})") !default;
+
+/* SHADOWS */
+
+$shadow-key-umbra-opacity: 0.2 !default;
+$shadow-key-penumbra-opacity: 0.14 !default;
+$shadow-ambient-shadow-opacity: 0.12 !default;
+
+$tab-host-height: 2.2rem;
+$gun-cell-margin: 5px;
+$gun-picker-height: 77%;
+
+.lineOption {
+  content: '';
+  position: absolute;
+  background-color: $borderColor;
+  margin: auto;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@mixin horizontalLine($top, $bottom, $width) {
+  @extend .lineOption;
+  transform: scaleY(.5);
+  -webkit-transform: scaleY(.5);
+  height: 1px;
+  left: 0;
+  right: 0;
+  top: $top;
+  bottom: $bottom;
+  width: $width;
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+}
+
+@mixin verticalLine($left, $right, $height) {
+  @extend .lineOption;
+  width: 1px;
+  transform: scaleX(.5);
+  -webkit-transform: scaleX(.5);
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  top: 0;
+  bottom: 0;
+  left: $left;
+  right: $right;
+  height: $height;
+}

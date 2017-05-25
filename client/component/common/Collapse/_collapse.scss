@@ -1,0 +1,75 @@
+@import "compass/css3";
+
+@mixin imgSetting($url) {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: .5rem;
+  margin: auto;
+  background: url($url) no-repeat;
+  zoom: .5;
+}
+
+.frc_collapse_container {
+  border: 1px solid #e9e9e9;
+  border-radius: 6px;
+  width: 95%;
+  margin: auto;
+  position: relative;
+
+  .frc_collapse_header {
+    height: 2rem;
+    line-height: 2rem;
+    position: relative;
+
+    .frc_collapse_title {
+      font-size: .8rem;
+      padding-left: 15px;
+    }
+
+    .frc_collapse_leftText {
+      float: right;
+      margin-right: 1.5rem;
+    }
+  }
+
+  .frc_collapse_header.fold {
+    &:before {
+      @include imgSetting("./img/top.png");
+    }
+  }
+  .frc_collapse_header.unfold {
+    &:before {
+      @include imgSetting("./img/down.png");
+    }
+  }
+
+  .frc_collapse_content {
+    margin: 0;
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      border-bottom: 1px solid #e9e9e9;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  // 删除动画
+  .frc_collapse_content.unfold {
+    max-height: 500px;
+    opacity: 1;
+    //transition: all .4s ease;
+  }
+  .frc_collapse_content.fold {
+    max-height: 0;
+    opacity: 0;
+    overflow: auto;
+    //transition: all .4s ease;
+  }
+}

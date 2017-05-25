@@ -1,0 +1,62 @@
+@import "../../../common/style/_variable.scss";
+
+.pullupLoading {
+  .loading {
+    text-align: center;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: .7rem;
+    color: #999999;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:before {
+      @include horizontalLine(0, null , null);
+    }
+
+    .pulluploading-icon {
+      display: inline-block;
+      height: 0.8rem;
+      width: 0.8rem;
+      background-position: center;
+      background-size: cover;
+      vertical-align: middle;
+    }
+    .loading_text {
+      height: 2.5rem;
+      line-height: 2.5rem;
+      display: inline-block;
+    }
+    .loading_spin {
+      /**transform-origin: 48.6% 50.2%;**/
+      transform-origin: center center 0;
+      animation: spin 0.7s linear 0s infinite;
+    }
+    .loading_fail {
+      height: 1.2rem;
+      width: 1.2rem;
+    }
+  }
+  .loading.no_more {
+    background-color: #F2F2F2;
+  }
+
+  .loading.none {
+    display: none;
+  }
+
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
