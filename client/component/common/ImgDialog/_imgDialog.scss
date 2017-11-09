@@ -1,0 +1,41 @@
+.imgDialog_container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(153, 153, 153, 0.5);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+
+  .img_container{
+    width:14.75rem;
+    height:11.875rem;
+    background-color: white;
+    border-radius: 15px;
+
+    .close_btn{
+      width:100%;
+      height: 1.7rem;
+      position: relative;
+
+      .c_img {
+        position: absolute;
+        right: -1px;
+        top:0;
+        height: 1.7rem;
+        width: 1.7rem;
+        background-size: 100% 100%;
+      }
+    }
+
+    .showImg{
+      width:13.275rem;
+      height:9.425rem;
+      margin-left: 0.657rem;
+    }
+  }
+
+}

@@ -1,0 +1,128 @@
+.cc-tablelist {
+    background: #fff;
+    button {
+        display: block;
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        outline: none;
+        &:last-child .list-content {
+            border-bottom: none;
+        }
+    }
+    .list-title-table {
+        height: 2.3rem;
+        font-size: 0.6rem;
+        line-height: 2.3rem;
+        display: block;
+        //padding: 0.4rem 0.5rem 0;
+        text-align: center;
+        border-bottom: 1px solid #e8e8e8;
+        color: #999;
+    }
+    .list-name-icon {
+        color: #fff;
+        background: rgb(20, 149, 255);
+        margin-right: 0.4rem;
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        font-size: 0.6rem;
+        line-height: 1.1rem;
+        text-align: center;
+        border-radius: 1rem;
+    }
+    .cc-datalist-list {
+        // top: 6rem;
+        // bottom: 0;
+        // border: 1px solid #e0e0e0;
+        // right: 0;
+        // left: 0;
+        // height: 7.75rem;
+        overflow: hidden;
+        transition: none;
+        list-style: none;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        background: white;
+        li {
+            cursor: pointer;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            .list-name {
+                max-height: 0;
+                transition: all .5s;
+                overflow: hidden;
+                display: block;
+                font-family: "icomoon";
+                color: #666666;
+                font-size: 0.8rem;
+            }
+
+            .list-name-description {
+                display: block;
+                border-bottom: 3px solid #d7d7d7;
+                padding: 0.4rem 1rem 0.5rem;
+                margin-top: 0.25rem;
+                font-size: 0.6rem;
+                color: #6c6c6c;
+            }
+            &.active {
+                background: #f2f2f2;
+                .list-content {
+                    border-bottom: 1px dashed #d3d3d3;
+                }
+                .list-name {
+                    max-height: 3.25rem;
+                }
+            }
+        }
+    }
+    .transition-list {
+      // animation: collapse .3s
+      transition: all .3s ease-out
+    }
+    .transition-list-reverse {
+      // animation: collapse .3s
+      transition: all .3s ease-in
+    }
+    .list-content {
+        overflow: hidden;
+        font-size: 0.6rem;
+        //margin: 0 0.5rem;
+        padding: 0.65rem 0;
+        border-bottom: 1px dashed #d3d3d3;
+        box-sizing: border-box;
+
+        .list-content-table {
+            display: block;
+            text-align: center;
+            tr {
+              //display: flex;
+            }
+            p {
+                line-height: 1.6em;
+                margin: 0;
+                padding: 0;
+                color: #6c6c6c;
+                width: 100%;
+                overflow: hidden;
+                //text-overflow: ellipsis;
+                //white-space: nowrap;
+            }
+            .list-content-title {
+                color: #999;
+            }
+        }
+    }
+}
+
+@keyframes collapse {
+  0% {height: 5.25rem}
+  100% {height: 17.5rem}
+}

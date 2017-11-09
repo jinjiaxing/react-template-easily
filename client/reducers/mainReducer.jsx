@@ -12,7 +12,7 @@ let {combineReducers} = Redux;
 
 const mainReducer = combineReducers({
         commonReducer,
-        pageHomeReducer,
+        pageHomeReducer
     }
 );
 

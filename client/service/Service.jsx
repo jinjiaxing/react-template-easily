@@ -7,7 +7,8 @@
 
 // 静态常量保存类库
 import Const from '../common/constant/Constant.jsx';
-
+// toast component
+import Toast from '../component/common/Toast/Toast.jsx';
 class Service {
     constructor() {
 
@@ -138,14 +139,19 @@ Service.post = (url, paramters) => {
  */
 Service.jsonp = function(url, paramters, timeout = 30000) {
 
+    if (Const && Const.server) {
+        url = Const.server + url;
+    }
+
     var global = window;
     var body = document.body;
 
     return new Promise(function(resolve, reject) {
         // 回调参数名称
-        var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        var scriptID = Math.round(100000 * Math.random());
+        var callbackName = 'jsonp_callback_' + scriptID;
         var script = document.createElement('script');
-
+        script.id = scriptID;
         // 请求公共参数处理
         var commonData = '';
         if (typeof (Service.requestPara) === 'object') {
@@ -160,7 +166,7 @@ Service.jsonp = function(url, paramters, timeout = 30000) {
             commonData += 't=' + new Date().getTime();
         }
 
-        console.info('jsonp请求公共参数commonData=', commonData);
+        // console.info('jsonp请求公共参数commonData=', commonData);
 
         // 请求参数
         let reqData = '';
@@ -179,15 +185,13 @@ Service.jsonp = function(url, paramters, timeout = 30000) {
             reqData = reqData.substr(0, reqData.length - 1);
         }
 
-        console.info('jsonp请求参数reqData', reqData);
-
-        if (reqData && commonData) {
+        if (reqData || commonData) {
             url = url + (url.indexOf('?') >= 0 ? '&' : '?') + reqData + '&' + commonData;
         }
 
         script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
 
-        console.log('jsonp请求url=', script.src);
+        console.info('jsonp请求url=', url);
 
         // If we fail to get the script, reject the promise.
         script.onerror = function(err) {
@@ -201,6 +205,9 @@ Service.jsonp = function(url, paramters, timeout = 30000) {
 
         global[callbackName] = function(data) {
             console.log('data=', data);
+            if(data && data.errno !==0) {
+                Toast.toastInstance(`服务器开小差:${data.errstr}`,2000);
+            }
             if (data) {
                 resolve(data);
             } else {
@@ -210,16 +217,20 @@ Service.jsonp = function(url, paramters, timeout = 30000) {
             // Clean up.
             global[callbackName] = null;
             delete global[callbackName];
-            body.removeChild(script);
+            if(document.getElementById(scriptID)) {
+                body.removeChild(script);
+            }
+
         };
 
         // 十秒超时处理
         setTimeout(function() {
-            if (!global[callbackName]) {
+            if(document.getElementById(scriptID)) {
                 console.log('请求超时：', script.src);
                 global[callbackName] = null;
                 delete global[callbackName];
                 body.removeChild(script);
+
             }
         }, timeout);
     });

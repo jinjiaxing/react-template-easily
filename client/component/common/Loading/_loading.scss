@@ -1,6 +1,3 @@
-@import "compass/css3";
-@import "compass/css3/animation";
-
 $loading-size: 0.4rem;
 $loading-gap: 0.18s;
 $control-base-size: 2.75rem;
@@ -41,7 +38,7 @@ $control-base-size: 2.75rem;
   top: $control-base-size / 2;
   width: $loading-size;
   transform: scale(0.7);
-  @include animation(ball-spin-fade-loader $loading-gap * 8 $loading-gap * 0 infinite linear);
+  animation: ball-spin-fade-loader $loading-gap * 8 $loading-gap * 0 infinite linear;
 
   &:nth-child(1) {
     margin-left: -$loading-size / 2;
@@ -51,68 +48,67 @@ $control-base-size: 2.75rem;
   &:nth-child(2) {
     margin-left: -$loading-size / 2 + $loading-size * 1.152;
     margin-top: -$loading-size / 2 - $loading-size * 1.152;
-    @include animation-delay($loading-gap * 1);
+    animation-delay: $loading-gap * 1;
   }
 
   &:nth-child(3) {
     margin-left: -$loading-size / 2 + $loading-size * 1.6;
     margin-top: -$loading-size / 2;
-    @include animation-delay($loading-gap * 2);
+    animation-delay: $loading-gap * 2;
   }
 
   &:nth-child(4) {
     margin-left: -$loading-size / 2 + $loading-size * 1.152;
     margin-top: -$loading-size / 2 + $loading-size * 1.152;
-    @include animation-delay($loading-gap * 3);
+    animation-delay: $loading-gap * 3;
   }
 
   &:nth-child(5) {
     margin-left: -$loading-size / 2;
     margin-top: -$loading-size / 2 + $loading-size * 1.6;
-    @include animation-delay($loading-gap * 4);
+    animation-delay: $loading-gap * 4;
   }
 
   &:nth-child(6) {
     margin-left: -$loading-size / 2 - $loading-size * 1.152;
     margin-top: -$loading-size / 2 + $loading-size * 1.152;
-    @include animation-delay($loading-gap * 5);
+    animation-delay: $loading-gap * 5;
   }
 
   &:nth-child(7) {
     margin-left: -$loading-size / 2 - $loading-size * 1.6;
     margin-top: -$loading-size / 2;
-    @include animation-delay($loading-gap * 6);
+    animation-delay: $loading-gap * 6;
   }
 
   &:nth-child(8) {
     margin-left: -$loading-size / 2 - $loading-size * 1.152;
     margin-top: -$loading-size / 2 - $loading-size * 1.152;
-    @include animation-delay($loading-gap * 7);
+    animation-delay: $loading-gap * 7;
   }
 }
 
-@include keyframes(ball-spin-fade-loader) {
+@keyframes ball-spin-fade-loader {
   50% {
     opacity: 0.2;
-    @include transform(scale(0.4));
+    transform: scale(0.4);
   }
   100% {
     opacity: 0.6;
-    @include transform(scale(0.8));
+    transform: scale(0.8);
   }
 }
-
 
 img.frc_loading_img {
   @include childPosition();
-  @include animation(loading 1s linear infinite)
+  animation: loading 1s linear infinite;
 }
 
-@include keyframes(loading) {
+@keyframes loading {
   0% {
-    @include transform(rotate(0deg));
+    transform: rotate(0deg);
   }
   100% {
-    @include transform(rotate(360deg));
+    transform: rotate(360deg);
   }
 }

@@ -1,13 +1,18 @@
 /**
- * Created by jinjiaxing on 17/5/19.
+ * @file webpack 产品dev开发打包脚本
+ * @author jinjiaxing<34568305@qq.com>
+ * @date 17/5/19.
  */
-var webpack = require('webpack');
-var path = require('path');
-var autoprefixer = require('autoprefixer');
-var buildPath = path.resolve(__dirname, 'dist');
-var htmlWebpackPlugin = require('html-webpack-plugin');
+'use strict';
 
-var config = {
+const webpack = require('webpack');
+const path = require('path');
+const buildPath = path.resolve(__dirname, 'dist');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const _d = new Date();
+const verforTime = _d.getFullYear().toString() + (_d.getMonth() + 1).toString() + _d.getDate();
+
+let config = {
     // 入口
     entry: {
         main: [
@@ -16,13 +21,15 @@ var config = {
             // bundle the client for webpack-dev-server
             // and connect to the provided endpoint
             'webpack/hot/only-dev-server',
-            path.resolve(__dirname, './client/router.jsx')],
-        vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'redux', 'fastclick', 'iscroll', 'redux-thunk','prop-types']
+            path.resolve(__dirname, './client/router.jsx')
+        ],
+        vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'redux',
+            'redux-thunk', 'prop-types']
 
     },
     // 优化
     resolve: {
-        //自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名
+        // 自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名
         extensions: ['.jsx', '.js', '.json', '.scss'],
         // 别名,优化编译时间
         alias: {
@@ -33,7 +40,7 @@ var config = {
     // 出口
     output: {
         path: buildPath,
-        filename: '[name].[hash].js',
+        filename: '[name].[hash].js?ver=' + verforTime
 
     },
 
@@ -48,15 +55,11 @@ var config = {
         host: "0.0.0.0",
         port: "8080",
         proxy: {
-            '/api/*': {
 
-                target: 'http://www.baidu.com/',
-                secure: false,
-                changeOrigin: true
-            }
         },
         // gzip
-        compress: true
+        compress: true,
+        disableHostCheck: true
     },
     module: {
         rules: [
@@ -82,7 +85,7 @@ var config = {
                                     'Android >= 4',
                                     '> 1%'
                                 ]
-                            }),
+                            })
                         ]
                     }
                     },
@@ -94,11 +97,11 @@ var config = {
             },
             // 对于所有小于8k的图片进行资源打包,大于8k的图片直接拷贝到/dist/img目录下
             {
-                test: /\.(png|jpg)$/,
+                test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
-                    name: 'img/[name].[ext]'
+                    name: 'Img/[name].[ext]'
                 },
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, './client')
@@ -107,24 +110,28 @@ var config = {
     },
     plugins: [
         // 打包html文件,动态加载js,拷贝到输出目录
-        new htmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             filename: './index.html',
             template: './client/index.html',
-            inject: 'body'
+            inject: 'body',
+            chunks: ['vendor', 'main']
         }),
-
         // 提取多个入口文件的公共脚本
         new webpack.optimize.CommonsChunkPlugin(
             {
                 name: 'vendor',
-                filename: 'common.js'
+                filename: 'smartparkinglib.[hash].js?ver=' + verforTime
             }
         ),
         new webpack.HotModuleReplacementPlugin(),
         // 开启全局的模块热替换(HMR)
-
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
+        })
     ]
 
-}
+};
 
 module.exports = config;

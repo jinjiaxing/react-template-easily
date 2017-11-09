@@ -1,0 +1,57 @@
+.pull-down-content {
+  margin-top: -2.45rem;
+  height: 2.45rem;
+  text-align: center;
+  line-height: 2.45rem;
+  font-size: 0.725rem;
+  color: #999;
+  background-color: #F2F4F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 0.8rem;
+    &.check {
+      width: 0.8rem;
+      background-image: url(./Img/check.png);
+      margin-right: 0.5rem;
+    }
+    &.refresh {
+      width: 0.8rem;
+      background-image: url(./Img/refresh.png);
+      animation: refresh 1s infinite linear;
+    }
+    &.arrow-down {
+      width: 0.45rem;
+      background-image: url(./Img/arrow-down.png);
+      margin-right: 0.5rem;
+    }
+    &.arrow-up {
+      width: 0.45em;
+      background-image: url(./Img/arrow-down.png);
+      margin-right: 0.5rem;
+      animation: rotate 0.2s linear;
+      animation-fill-mode: forwards;
+    }
+    @keyframes rotate {
+      from {
+        transform: rotate(0);
+      }
+      to {
+        transform: rotate(180deg);
+      }
+    }
+    @keyframes refresh {
+      from {
+        transform: rotate(0);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

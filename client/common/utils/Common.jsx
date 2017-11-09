@@ -3,6 +3,7 @@
  * @desc 通用类
  * @author jinjiaxing
  * @data 2017/05/25
+ * @update 2017/07/26
  */
 
 (function(window, document) {
@@ -173,11 +174,13 @@
         }, deferTime);
     };
 
-    common.write = function(key, value) {
+    // 写入localStorage
+    common.writeStorage = function(key, value) {
         localStorage.setItem(key, value);
     };
 
-    common.read = function(key) {
+    // 读取localStorage
+    common.readStorage = function(key) {
         return localStorage.getItem(key);
     };
 
@@ -346,32 +349,29 @@
         return ua.match(/MicroMessenger/i) == 'micromessenger';
     };
 
-    // 区分是否在微信浏览器中
-    common.isBaiduMap = () => {
+    common.isIos = () => {
         const ua = window.navigator.userAgent.toLowerCase();
-        return ua.match(/baidumap_/i) == 'baidumap_';
+        const iosReg = /ip(hone|ad|od)/i;
+        return iosReg.test(ua);
     };
 
     common.setTitle = (title) => {
-        if (!window.common.isAndroid()) {
-            // 解决ios webview下document.title 不能修改title的hack问题（微信、地图）
-            setTimeout(function() {
-                //利用iframe的onload事件刷新页面
-                document.title = title;
-                var iframe = document.createElement('iframe');
-                iframe.style.visibility = 'hidden';
-                iframe.style.width = '1px';
-                iframe.style.height = '1px';
-                iframe.onload = function() {
-                    setTimeout(function() {
-                        document.body.removeChild(iframe);
-                    }, 0);
-                };
-                document.body.appendChild(iframe);
-            }, 0);
-        } else {
+        // 解决ios webview下document.title 不能修改title的hack问题（微信、地图）
+        setTimeout(function() {
+            //利用iframe的onload事件刷新页面
             document.title = title;
-        }
+            var iframe = document.createElement('iframe');
+            iframe.style.visibility = 'hidden';
+            iframe.style.width = '1px';
+            iframe.style.height = '1px';
+            iframe.onload = function() {
+                setTimeout(function() {
+                    document.body.removeChild(iframe);
+                }, 0);
+            };
+            document.body.appendChild(iframe);
+        }, 0);
+
     };
 
     // 初始化屏幕webview高度
@@ -404,5 +404,168 @@
             }
         }, 500);
     }
+
+    /**
+     *  将url中的参数  a=1&b=2 转成对象 { a: 1, b: 2 }
+     *
+     * @param {String} str
+     * @returns {Object}
+     */
+
+    function parseUrlSringToObject(str) {
+        const obj = {};
+        if (!str) {
+            return {};
+        }
+        const arr = str.split('&');
+        for (let index = 0; index < arr.length; index++) {
+            const [k, v = null] = arr[index].split('=');
+            if (v) {
+                // 判断a=&b=2的情况 去掉a
+                obj[k] = v;
+            }
+        }
+
+        return obj;
+    }
+
+    /**
+     *
+     * 将 { a:1, b:2 } 转成 a=1&b=2
+     * @param {Object} obj
+     * @returns @returns {String}
+     */
+    function parseObjectToUrlString(obj) {
+        let arr = [];
+        for (let k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                arr.push(`${k}=${obj[k]}`);
+            }
+        }
+
+        return arr.join('&');
+    }
+
+    function getParamsFromUrl() {
+        if (window.location.hash.indexOf('?') !== -1) {
+            return parseUrlSringToObject(window.location.hash.split('?').pop());
+        }
+
+        if (window.location.href.indexOf('?') !== -1) {
+            return parseUrlSringToObject(window.location.href.split('?').pop().split('#')[0]);
+        }
+
+        return {};
+    }
+
+    function isEmpty(obj) {
+
+        // null and undefined are "empty"
+        if (obj == null) return true;
+
+        // Assume if it has a length property with a non-zero value
+        // that that property is correct.
+        if (obj.length > 0) return false;
+        if (obj.length === 0) return true;
+
+        // If it isn't an object at this point
+        // it is empty, but it can't be anything *but* empty
+        // Is it empty?  Depends on your application.
+        if (typeof obj !== "object") return true;
+
+        // Otherwise, does it have any properties of its own?
+        // Note that this doesn't handle
+        // toString and valueOf enumeration bugs in IE < 9
+        for (let key in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) return false;
+        }
+
+        return true;
+    }
+
+    // 获取URL参数
+    common.fetchNAParams = () => {
+        return new Promise((resolve) => {
+            let obj = getParamsFromUrl();
+            resolve(obj);
+        })
+    };
+
+    common.getAndroidVersion = () => {
+        var myUserAgent = navigator.userAgent;
+        // 安卓机器
+        if (myUserAgent !== null || myUserAgent !== 'undefined') {
+            if (myUserAgent.indexOf('Android') !== -1) {
+                var s = myUserAgent.substr(navigator.userAgent.indexOf('Android') + 8, 3);
+                var osversion = parseFloat(s[0] + s[2]);
+                if (osversion === 60) {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    };
+
+    common.versionCompare = (ver1, ver2) => {
+        var version1pre = parseFloat(ver1);
+        var version2pre = parseFloat(ver2);
+        var version1next = ver1.replace(version1pre + ".", "");
+        var version2next = ver2.replace(version2pre + ".", "");
+        if (version1pre > version2pre) {
+            return true;
+        } else if (version1pre < version2pre) {
+            return false;
+        } else {
+            if (version1next >= version2next) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
+
+    common.isNull = (obj) => {
+        return (!obj && (obj !== false) && (obj !== 0));
+    };
+
+    /**
+     * 向url追加参数
+     * param: string or object
+     */
+    common.appendParamToUrl = (url, param) => {
+        let paramString = '';
+        if (param === null || param === 'undefined') {
+            return url;
+        }
+
+        if (!url) {
+            return "";
+        }
+
+        if (Object.prototype.toString.call(param) === '[object Object]') {
+            for (let key in param) {
+                if (param.hasOwnProperty(key)) {
+                    paramString += key + '=' + encodeURIComponent(param.requestPara[key]) + '&';
+                }
+
+            }
+        } else if (typeof(param) === 'string') {
+            paramString = param;
+        }
+
+        if (url.substr(url.length - 1) === '?') {
+            url += paramString
+        } else {
+            url = url + '?' + paramString;
+        }
+
+        return url;
+    };
 
 })(window, document);

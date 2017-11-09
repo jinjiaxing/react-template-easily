@@ -2,7 +2,8 @@
  * @file pageHomeAction.jsx
  * @desc 首页action
  * @author jinjiaxing
- * @data 2017/05/25
+ * @data 2017/08/23
+ * @update 2017/11/09
  */
 
 import commonActionName from '../common/constant/CommonActionName.jsx';

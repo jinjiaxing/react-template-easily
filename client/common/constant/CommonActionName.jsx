@@ -2,16 +2,16 @@
  * @file CommonActionName.jsx
  * @desc 全局Action Name
  * @author jinjiaxing
- * @data 2017/05/25
+ * @data 2017/07/20
  */
 
 let CommonActionName = {};
 
 /**
- * pagehome 首页action
+ * for common
  */
+CommonActionName.UPDATE_INFO = 'UPDATE_INFO';
 
-// 更新test数据
-// CommonActionName.UPDATE_TESTDATA = 'UPDATE_TESTDATA';
+
 
 export default CommonActionName;

@@ -1,5 +1,3 @@
-@import "compass/css3";
-
 $titleBar_height: 2.6rem;
 
 // 清除浮动
@@ -32,7 +30,7 @@ $titleBar_height: 2.6rem;
     right: 0;
     bottom: 0;
     border-bottom: 1px solid #eaeaea;
-    @include transform(scaleY(0.5));
+    transform: scaleY(0.5);
   }
 
   .go_back_icon {

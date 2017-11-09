@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import IScroll from 'iscroll/build/iscroll-probe.js';
+import IScroll from './iscroll-probe.jsx';
 import './_scrollView.scss'
 import PullupLoading from '../PullupLoading/PullupLoading.jsx';
 
@@ -17,6 +17,25 @@ class ScrollView extends Component {
         super(props);
         this.myScroll = null;
         this.wrapClassForInstance = 'frc_scrview_' + Math.floor(Math.random() * 10000);
+        this.onTouchEnd = this.onTouchEnd.bind(this);
+        this.onTouchStart = this.onTouchStart.bind(this);
+        this.setMaxScrollY = this.setMaxScrollY.bind(this);
+        this.isTouching = false;
+        this.pullDownEl = null;
+
+        this.pullDownText = {
+            // 下拉状态
+            0: '已为您展示最新内容',
+            1: '下拉刷新',
+            2: '释放刷新',
+            3: ''
+        };
+        this.pullDownIcon = {
+            0: 'check',
+            1: 'arrow-down',
+            2: 'arrow-up',
+            3: 'refresh'
+        }
     }
 
     static defaultProps = {
@@ -58,10 +77,18 @@ class ScrollView extends Component {
         // 滚动条淡入淡出效果
         fadeScrollbars: true,
         deceleration:0.0006,
-        // 是否需要使用下拉加载更多
+        // 是否需要使用上拉加载更多
         isNeedPullLoading:false,
         // 上拉加载更多时的状态
         pullLoadingStatus:'none',
+        // 是否需要使用下拉刷新
+        isNeedPullDown: false,
+        // 下拉刷新状态
+        pullDownStatus: 1,
+        // 下拉时
+        onPullDown: () => {},
+        // 下拉结束
+        onPullDownEnd: () => {},
         // 底部计算距离（px）
         judgmentBottomY:150,
         onBeforeScrollStart: ()=> {
@@ -109,8 +136,12 @@ class ScrollView extends Component {
         deceleration:PropTypes.number,
         isNeedPullLoading:PropTypes.bool,
         pullLoadingStatus:PropTypes.string,
-        judgmentBottomY:PropTypes.number
-    }
+        judgmentBottomY:PropTypes.number,
+        isNeedPullDown: PropTypes.bool,
+        pullDownStatus: PropTypes.number,
+        onPullDown: PropTypes.func,
+        onPullDownEnd: PropTypes.func
+    };
 
     // 安卓4.4以下版本 iscroll click会执行2次
     static iScrollClick() {
@@ -123,7 +154,7 @@ class ScrollView extends Component {
                 if (osversion < 44) {
                     return false;
                 } else {
-                    return true;
+                    return false;
                 }
 
             } else {
@@ -140,6 +171,7 @@ class ScrollView extends Component {
             useTransition: this.props.useTransform,
             bounce: this.props.bounce,
             click: this.props.click,
+            preventDefault:false,
             disableMouse: this.props.disableMouse,
             disablePointer: this.props.disablePointer,
             disableTouch: this.props.disableTouch,
@@ -147,7 +179,7 @@ class ScrollView extends Component {
             momentum: this.props.momentum,
             scrollbars: this.props.scrollbars,
             scrollX: this.props.scrollX,
-            scrollY: this.props.scrollY,
+            scrollY: 50,
             eventPassthrough: this.props.eventPassthrough,
             snap: this.props.snap,
             indicators: this.props.indicators,
@@ -155,6 +187,17 @@ class ScrollView extends Component {
             deceleration:this.props.deceleration,
             probeType: 3,
         };
+
+        if (this.props.isNeedPullDown) {
+            this.pullDownEl = document.querySelector('.pullDownLoading');
+            if (this.pullDownEl) {
+                scrollOptions.startY = this.pullDownEl.offsetHeight;
+                setTimeout(() => {
+                    this.scrollTo(0, 0, 500);
+                }, 1500)
+            }
+        }
+
         this.myScroll = new IScroll('.' + this.wrapClassForInstance, scrollOptions);
 
         this.myScroll.on('beforeScrollStart', this.props.onBeforeScrollStart);
@@ -163,6 +206,7 @@ class ScrollView extends Component {
         this.myScroll.on('scrollEnd', this.scrollEndHandler.bind(this));
 
         window.addEventListener("resize", this.resizeHandler.bind(this));
+        this.setMaxScrollY();
     }
 
     /**
@@ -172,6 +216,28 @@ class ScrollView extends Component {
         // 触发滑动结束的事件
         if(this.props.onScroll) {
             this.props.onScroll();
+        }
+        // 下拉
+        if (this.props.isNeedPullDown) {
+            // 滑动中
+            if (this.isTouching) {
+                // 下拉状态判断
+                if (this.myScroll.maxScrollY < 0 && this.myScroll.y > 0) {
+                    if (this.myScroll.y >= this.pullDownEl.offsetHeight) {
+                        // 超出下拉位置
+                        this.props.pullDownStatus !==2 && this.props.onPullDown({
+                            status: 2
+                        });
+                        this.myScroll.refreshY = this.pullDownEl.offsetHeight;
+                    } else {
+                        // 未超出下拉位置
+                        this.props.pullDownStatus !==1 && this.props.onPullDown({
+                            status: 1
+                        });
+                        this.myScroll.refreshY = 0;
+                    }
+                }
+            }
         }
     }
 
@@ -189,7 +255,7 @@ class ScrollView extends Component {
             let scrollViewInstance = this.myScroll;
             // 滑动到底部的判断,触发上拉动作
             if (scrollViewInstance.maxScrollY < 0 && (scrollViewInstance.y - this.props.judgmentBottomY) <= scrollViewInstance.maxScrollY) {
-                    this.props.onPullupFetch();
+                this.props.onPullupFetch();
             }
         }
 
@@ -201,24 +267,42 @@ class ScrollView extends Component {
             }
         }
 
+        if (this.props.isNeedPullDown) {
+            if (this.props.pullDownStatus === 2) {
+                this.props.onPullDownEnd && Promise.resolve(this.props.onPullDownEnd()).then(() => {
+                    this.myScroll.refreshY = 0;
+                    this.pullDownHandler.call(this);
+                });
+            }
+        }
     }
+
 
     // 组件销毁
     componentWillUnmount() {
-        this.myScroll.destroy();
-        this.myScroll = null;
-        window.removeEventListener("resize", this.resizeHandler.bind(this));
+        if (this.myScroll) {
+            this.myScroll.destroy();
+            this.myScroll = null;
+            window.removeEventListener("resize", this.resizeHandler.bind(this));
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        this.myScroll.refresh();
+        // 解决更改下拉刷新状态时iscroll refresh的bug
+        // 监听resizeFlag 解决容器被撑大时scroll需要refresh的问题
+        if ((!this.props.pullDownStatus && this.props.isNeedPullDown) || (prevProps.resizeFlag !== this.props.resizeFlag)) {
+            // 动画还没结束就立刻refresh会导致计算错误  需要等动画执行结束再refresh 动画的执行时间为0.5s
+            setTimeout(() => {
+                this.resizeHandler.call(this);
+            }, 1000);
+        }
     }
 
     /**
      * 在大小变化的时候,进行iscroll实例的刷新,防止无法滚动
      */
     resizeHandler() {
-        this.myScroll && this.myScroll.refresh();
+        this.refresh();
     }
 
     // 获取iscroll实例
@@ -234,7 +318,9 @@ class ScrollView extends Component {
      * @param easing 滚动动画（如:IScroll.utils.ease/quadratic, circular, back, bounce, elastic等）
      */
     scrollTo(x, y, time, easing) {
-        this.myScroll.scrollTo(x, y, time, easing);
+        if(this.myScroll) {
+            this.myScroll.scrollTo(x, y, time, easing);
+        }
     }
 
     /**
@@ -288,15 +374,63 @@ class ScrollView extends Component {
     // 刷新容器,在元素高度变化时,需要调用
     refresh() {
         this.myScroll && this.myScroll.refresh();
+        this.setMaxScrollY();
+    }
+
+    setMaxScrollY() {
+        if (this.props.isNeedPullDown) {
+            // 因为下拉刷新的dom使用margin-top负值使整个容器上移一部分 导致scroll底部有一块空白 需要人工去掉
+            // this.myScroll.maxScrollY应为负值  当容日没有填满时，this.myScroll.maxScrollY + this.pullDownEl.offsetHeight为正值会出现页面上下滚动死循环
+            if (this.myScroll.maxScrollY + this.pullDownEl.offsetHeight < 0) {
+                this.myScroll.maxScrollY = this.myScroll.maxScrollY + this.pullDownEl.offsetHeight;
+            }
+        }
+    }
+
+    // 滑动开始的处理
+    onTouchStart(e) {
+        this.isTouching = true;
+    }
+
+    // 滑动结束处理
+    onTouchEnd(e) {
+        this.isTouching = false;
+    }
+
+    // 下拉结束时的操作
+    pullDownHandler() {
+        if (this.props.pullDownStatus !== 0) {
+            let interval = setInterval(() => {
+                if (this.props.pullDownStatus === 0) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        this.scrollTo(0, 0, 80);
+                    }, 1000);
+                }
+            }, 500);
+        } else {
+            setTimeout(() => {
+                this.scrollTo(0, 0, 80);
+            }, 1000);
+        }
     }
 
     render() {
-
-        let {scrollerClassName, wrapperClassName ,isNeedPullLoading,pullLoadingStatus} = this.props;
+        let {scrollerClassName, wrapperClassName ,isNeedPullLoading, pullLoadingStatus, pullDownStatus, isNeedPullDown} = this.props;
 
         return (
             <div className={this.wrapClassForInstance+' '+wrapperClassName+' frc_scrollView_wrapper'} >
-                <div className={scrollerClassName+' frc_scrollView_scroller'}>
+                <div className={scrollerClassName+' frc_scrollView_scroller'}
+                     onTouchStart={this.onTouchStart}
+                     onTouchEnd={this.onTouchEnd}
+                    >
+                    {
+                       isNeedPullDown ?
+                           (<div className="pullDownLoading">
+                               <span className={`icon ${this.pullDownIcon[pullDownStatus]}`}></span>
+                               {this.pullDownText[pullDownStatus]}
+                           </div>) : ''
+                    }
                     {this.props.children}
                     {isNeedPullLoading? (<PullupLoading fetchStatus={pullLoadingStatus}/>) : ''}
                 </div>

@@ -1,6 +1,3 @@
-@import "compass/css3";
-
-
 $gap : .5rem; //列表左右间隙
 $border-color : #ccc; // item中的border颜色
 $back-color: #fff; //item背景色
@@ -78,10 +75,10 @@ $font-size: .8rem;
       height: 1px;
       width: 100%;
       border-top: 1px solid $border-color;
-      @include transform(scaleY(.5))
+      transform: scaleY(.5);
     }
     .content-top {
-      @include box-sizing(border-box);
+      box-sizing: border-box;
       width: 100%;
       padding-right: $gap;
       @extend .dis-box;
@@ -106,7 +103,7 @@ $font-size: .8rem;
       width: 25px;
       opacity: 0;
       outline: 0!important;
-      @include transform(translateY(-50%));
+      transform: translateY(-50%);
     }
 
     .check-icon {
@@ -118,7 +115,7 @@ $font-size: .8rem;
       background-size: 100% 100%;
       background-repeat: no-repeat;
       outline: 0!important;
-      @include transform(translateY(-50%));
+      transform: translateY(-50%);
     }
 
     .demon-uncheck {
@@ -146,11 +143,11 @@ $font-size: .8rem;
 @include keyframes($name: fadeInDown) {
   from {
     opacity: 0;
-    @include transform(translate3d(0, -100%, 0));
+    transform: translate3d(0, -100%, 0);
   }
 
   to {
     opacity: 1;
-    @include transform(none);
+    transform: none;
   }
 }

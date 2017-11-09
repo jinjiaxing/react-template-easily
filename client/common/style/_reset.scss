@@ -265,7 +265,6 @@ html input[disabled] {
 
 input[type="checkbox"],
 input[type="radio"] {
-  box-sizing: border-box;
   padding: 0;
 }
 
@@ -295,5 +294,16 @@ textarea {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+body {
+  //background: grey;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body::-webkit-scrollbar {
+  height: 0px;
+  overflow: visible;
+  width: 0px;
 }
 

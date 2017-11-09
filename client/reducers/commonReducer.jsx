@@ -9,7 +9,6 @@ import commonActionName from '../common/constant/CommonActionName.jsx'
 import Const from '../common/constant/Constant.jsx'
 
 const commonInitialState = {
-
 };
 
 const commonReducer = (state=commonInitialState, action) => {

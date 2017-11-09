@@ -1,12 +1,10 @@
-@import "compass/css3";
-
 .frc_panel_container {
   background-color: #ffffff;
   border: 1px solid #e9e9e9;
   width: 96%;
   margin: 1rem auto;
-  @include border-radius(10px);
-  @include box-shadow(4px 4px 5px rgba(176, 176, 176, 0.3));
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px rgba(176, 176, 176, 0.3);
 
   .frc_panel_title {
     box-sizing: border-box;

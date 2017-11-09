@@ -15,7 +15,9 @@
     &:before {
       @include horizontalLine(0, null , null);
     }
-
+    .loading_text {
+      margin-left: .2rem;
+    }
     .pulluploading-icon {
       display: inline-block;
       height: 0.8rem;
