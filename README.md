@@ -67,18 +67,21 @@ react-template-easily
 	
 	
 
-## debug ##
+## 开始使用 ##
+
+	git clone https://github.com/jinjiaxing/react-template-easily.git
+	npm install
 	npm run dev
+	浏览器访问：0.0.0.0:8080
+	
 
-## release ##
-	npm run release
+## 发布 ##
+	npm run release 或 sh ./build.sh
 
-## 打包压缩发布 ##
-	./build.sh
 
 ## 开发人员 ##
 * 姓名:金家兴(jinjiaxing)
-* 公司：百度(baidu)
+* 公司:百度(baidu)
 * 邮箱:34568305@qq.com
 
 
