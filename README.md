@@ -3,7 +3,10 @@ react-template-easily
 
 
 ### 描述：
->**react-template-easily** 是一套以react技术搭建的项目模板，适用于移动端*H5*, *webapp*和*hybirdApp*开发。其中包含常用20+常用组件，精细计算的rem，以及诸多项目的实践。  
+>**react-template-easily** 是一套以react技术搭建的项目模板，适用于移动端*H5*, *webapp*和*hybirdApp*开发。其中包含常用20+常用组件，精细计算的rem，以及诸多项目的实践。
+
+### URL:
+[https://github.com/jinjiaxing/react-template-easily](https://github.com/jinjiaxing/react-template-easily  )
 
 ## 技术栈 ##
 * _react:16_
