@@ -5,6 +5,9 @@
  * @data 2017/05/25
  */
 /*** library ***/
+import 'core-js/es6/map' //支持Map
+import 'core-js/es6/set' //支持Set
+import 'core-js/es6/string' //支持includes()
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Switch, IndexRedirect} from 'react-router-dom';

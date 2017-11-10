@@ -1,7 +1,7 @@
 {
   "name": "ReactGenerator-Jinjiaxing",
   "version": "1.0.1",
-  "description": "移动端React工程化模板,React,Redux,React-Router",
+  "description": "移动端React工程化模板,react,redux,react-router,react16,react-router4,webpack3",
   "main": "client/router.jsx",
   "scripts": {
     "dev": "NODE_ENV='dev' webpack-dev-server --watch --inline --compress --progress --colors --env development",
@@ -12,7 +12,7 @@
     "url": "https://github.com/jinjiaxing/ReactGenerator-Jinjiaxing.git"
   },
   "author": "jinjiaxing",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "autoprefixer": "^7.1.5",
     "babel-core": "^6.26.0",
@@ -50,7 +50,6 @@
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.2",
     "webpack-upload": "^1.1.1",
-    "babel-plugin-transform-object-assign": "^6.22.0",
     "core-js": "^2.5.1",
   }
 }

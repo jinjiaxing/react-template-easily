@@ -18,7 +18,7 @@ let config = {
     // 入口
     entry: {
         main: [path.resolve(__dirname, './client/router.jsx')],
-        vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux',
+        vendor: ['core-js','react', 'react-dom', 'react-router-dom', 'react-redux',
             'redux','redux-thunk', 'prop-types']
     },
     // 出口
