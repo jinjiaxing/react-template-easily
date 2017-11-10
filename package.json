@@ -1,5 +1,5 @@
 {
-  "name": "ReactGenerator-Jinjiaxing",
+  "name": "react-template-easily",
   "version": "1.0.1",
   "description": "移动端React工程化模板,react,redux,react-router,react16,react-router4,webpack3",
   "main": "client/router.jsx",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jinjiaxing/ReactGenerator-Jinjiaxing.git"
+    "url": "https://github.com/jinjiaxing/react-template-easily.git"
   },
   "author": "jinjiaxing",
   "license": "MIT",

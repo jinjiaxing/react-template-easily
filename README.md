@@ -1,14 +1,22 @@
-React Template(React工程化模板for h5)
-===============
+#react-template-easily 
 
-## 说明 ##
-	React工程化模板，用于开发移动端React H5项目
-	自带20+常用组件，支持rem屏幕适配
-	version:React(16) webpack(3.8.1) react-router(4)
+
+### 描述：
+>**react-template-easily** 是一套以react技术搭建的项目模板，适用于移动端*H5*, *webapp*和*hybirdApp*开发。其中包含常用20+常用组件，精细计算的rem，以及诸多项目的实践。  
 
 ## 技术栈 ##
-	React16 React-Router4 Redux React-Redux Redux-Thunk
-	Sass PostCss Webpack3 iscroll5 ES6 Rem Node(6.10.3)
+* _react:16_
+* _react-dom:16_
+* _react-router-dom:4_
+* _redux:3.7.2_
+* _redux-thunk:2.2_
+* _react-redux:5.0.6_
+* _sass_
+* _postcss_
+* _webpack:3.8.1_
+* _iscroll:5_
+* ...
+
 	
 ## 目录结构和文件说明 ##
 	client 客户端主目录，PS：为将来SSR时加入server做准备，所以叫做client
@@ -36,16 +44,22 @@ React Template(React工程化模板for h5)
 				--img 存放每个页面的图片
 				--_pageHome.scss 每个页面独立的样式文件
 				--PageHome.jsx 组件jsx文件
+				
 		--reducers 全部reducers放入此文件夹
 			--commonReducer.jsx 通用reducer
 			--mainReducer.jsx 用于连接各reducer
 			--pageHomereduces.jsx demo主页的reducer
+			
 		--service http请求类库
 			--Service.jsx	用于ajax/jsonp请求的方法均在此处，应用了promise
+			
 		--sotre
 			--sotre.jsx 
+			
 		--app.jsx 相当于页面的父容器组件进行一些通用处理
+		
 		--index.html html文件
+		
 		--router.jsx 入口文件，也是路由文件
 	
 			
@@ -58,17 +72,13 @@ React Template(React工程化模板for h5)
 ## release ##
 	npm run release
 
-## 发布 ##
+## 打包压缩发布 ##
 	./build.sh
 
-## 作者 ##
-	name:金家兴(目前就职于百度)
-
-	mail1:jin_jiaxing@hotmail.com
-
-	mail2:34568305@qq.com
-
-	mail3:jinjiaxing@baidu.com
+## 开发人员 ##
+* 姓名:金家兴(jinjiaxing)
+* 公司：百度(baidu)
+* 邮箱:34568305@qq.com
 
 
 
