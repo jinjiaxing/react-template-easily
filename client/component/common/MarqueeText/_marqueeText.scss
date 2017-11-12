@@ -1,0 +1,32 @@
+$topnewsHeight: 2.4rem;
+$textHeight: 1rem;
+$textFontSize: .7rem;
+$textColor: #4A4A4A;
+$textWidth: 11.9rem;
+
+.winner_news_list {
+  height: $textHeight;
+  margin-right: 0.75rem;
+  overflow: hidden;
+  touch-action: none;
+  flex: 1;
+
+  .news_item_container {
+    transform: translate3d(0, 0, 0);
+  }
+  .winner_news_item {
+    width: 100%;
+    height: $textHeight;
+    line-height: $textHeight;
+    font-size: 0.7rem;
+    color: #f54336;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    .text1 {
+      color: #666666;
+    }
+  }
+}

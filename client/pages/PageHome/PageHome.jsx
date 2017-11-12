@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
 /**component**/
+import MarqueeText from '../../component/common/MarqueeText/MarqueeText.jsx';
 
 /**resources**/
 import './_pageHome.scss';
@@ -57,6 +58,7 @@ class PageHome extends Component {
         return (
             <div id='pagehome'>
                 jinjiaxing's react cli
+                <MarqueeText marqueeData={['aaa','bbb','ccc']}/>
             </div>
         );
     }
