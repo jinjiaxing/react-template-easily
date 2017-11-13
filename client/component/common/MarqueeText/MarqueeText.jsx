@@ -1,13 +1,16 @@
 /**
- * @file MarqueeText 上下滚动轮播组件
- * Created by jinjiaxing on 17/11/12.
+ * @file MarqueeText.jsx
+ * @desc 上下滚动轮播组件
+ * @create 17/11/12.
+ * @author jinjiaxing
+ * @update 17/11/13.
+ * @using the example
+ * <MarqueeText marqueeData={['aaa','bbb','ccc']}/>
  */
 
 import React, {Component} from 'react';
 import './_marqueeText.scss';
 import PropTypes from 'prop-types';
-
-const INTERVAL_TIME = 3000; // 单位为毫秒
 
 class MarqueeText extends Component {
     constructor(props) {
@@ -50,7 +53,7 @@ class MarqueeText extends Component {
                     this.setStyle(domNode, 'transition', '');
                     this.setStyle(domNode, 'transform', `translate3d(0, ${-this.newsItemHeight}px, 0)`);
                     this.count = 2;
-                    this.carouselVertical(INTERVAL_TIME);
+                    this.carouselVertical(this.props.intervalTime);
                 } else {
                     if (this.count == totalSize) {
                         this.setStyle(domNode, 'transition', '');
@@ -61,7 +64,7 @@ class MarqueeText extends Component {
                         this.setStyle(domNode, 'transition', 'all 1s ease');
                         this.setStyle(domNode, 'transform', `translate3d(0, ${-this.newsItemHeight * this.count}px, 0)`);
                         this.count++;
-                        this.carouselVertical(INTERVAL_TIME);
+                        this.carouselVertical(this.props.intervalTime);
                     }
                 }
             }, period)
@@ -71,7 +74,6 @@ class MarqueeText extends Component {
     componentDidMount() {
 
         if (this.props.marqueeData && this.props.marqueeData.length > 0) {
-            console.log('start the animation')
             this.carouselVertical(0, true);
         }
     }
@@ -91,13 +93,18 @@ class MarqueeText extends Component {
             topNewsList.push(marqueeData[0]);
             topNewsList.unshift(marqueeData[marqueeData.length - 1]);
             topNewsArea = topNewsList.map((item, idx) => {
-                return <TopNewsItem data={item} height={this.newsItemHeight + 'px'} key={idx}
-                                    idName={`winner-news-item winnerNewsItem${idx}`}/>
+                if (common.isDom(item)) {
+                    return <div key={idx}>{item}</div>;
+                } else {
+                    return <DefaultItem data={item} height={this.newsItemHeight + 'px'} key={idx}
+                                        idName={`winner-news-item winnerNewsItem${idx}`}/>
+                }
+
             });
         }
 
         return (
-            <div className={'winner_news_list'} style={{height: this.newsItemHeight + 'px'}}>
+            <div className={'marqueeConcainer'}>
                 <div className="news_item_container" ref={(ref) => {
                     this.topNews = ref
                 }}>{topNewsArea}</div>
@@ -106,7 +113,7 @@ class MarqueeText extends Component {
     }
 }
 
-const TopNewsItem = props => {
+const DefaultItem = props => {
     return (
         <div className="winner_news_item" onClick={props.clickHandler}
              style={{height: props.height, lineHeight: parseInt(props.height) + 2 + 'px'}}>

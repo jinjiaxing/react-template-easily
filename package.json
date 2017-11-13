@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/jinjiaxing/react-template-easily.git"
   },
-  "author": "jinjiaxing",
+  "author": "jinjiaxing <34568305@qq.com> (34568305@qq.com)",
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^7.1.5",

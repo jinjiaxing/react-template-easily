@@ -568,4 +568,21 @@
         return url;
     };
 
+    /**
+     * 判断是否为DOM对象
+     * @param obj
+     */
+    common.isDom = obj => {
+        if(typeof obj === 'object') {
+            if(obj instanceof HTMLElement) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
+
 })(window, document);

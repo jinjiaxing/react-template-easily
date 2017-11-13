@@ -1,14 +1,13 @@
 $topnewsHeight: 2.4rem;
-$textHeight: 1rem;
+$textHeight: 1.2rem;
 $textFontSize: .7rem;
 $textColor: #4A4A4A;
 $textWidth: 11.9rem;
 
-.winner_news_list {
+.marqueeConcainer {
   height: $textHeight;
-  margin-right: 0.75rem;
   overflow: hidden;
-  touch-action: none;
+  background-color: white;
   flex: 1;
 
   .news_item_container {
@@ -19,7 +18,7 @@ $textWidth: 11.9rem;
     height: $textHeight;
     line-height: $textHeight;
     font-size: 0.7rem;
-    color: #f54336;
+    color: black;
 
     overflow: hidden;
     white-space: nowrap;
