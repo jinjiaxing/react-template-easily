@@ -1,0 +1,62 @@
+
+h2 {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.component_container {
+  background-color: rgba(249, 249, 249, 0.75);
+  padding-bottom: 2rem;
+  padding-top: 2.5rem;
+
+
+  i.home {
+    background-image: url("./img/home.png");
+  }
+  i.home_active {
+    background-image: url("./img/home_p.png");
+  }
+  i.mine {
+    background-image: url("./img/mine.png");
+  }
+  i.mine_active {
+    background-image: url("./img/mine_p.png");
+  }
+  i.order {
+    background-image: url("./img/order.png");
+  }
+  i.order_active {
+    background-image: url("./img/order_p.png");
+  }
+  i.classify {
+    background-image: url("./img/classify.png");
+  }
+  i.classify_active {
+    background-image: url("./img/classify_p.png");
+  }
+
+  .btnIcon {
+    background-image: url("./img/pay.png");
+  }
+}
+
+.sliderDisplayValue {
+  display: inline-block;
+  margin-left: .5rem;
+  margin-top: .4rem;
+  border: 1px solid #eaeaea;
+  width: 2.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: .7rem;
+  border-radius: 6px;
+  color: #666;
+  text-align: center;
+}
+
+.slider_img {
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+  white-space: nowrap;
+}

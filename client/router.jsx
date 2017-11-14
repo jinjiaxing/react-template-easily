@@ -31,6 +31,8 @@ import App from './app.jsx';
 /*** pages ***/
 // 主页面
 import PageHome from './pages/PageHome/PageHome.jsx';
+// 组件展示页面
+import PageTest from './pages/PageTest/PageTest.jsx';
 
 // 初始化webview高度
 common.webViewHeight = window.document.body.offsetHeight;
@@ -42,6 +44,7 @@ let jiaxingApp = (
                 <Switch>
                     <Route exact path="/" component={PageHome}/>
                     <Route path='/home' component={PageHome}/>
+                    <Route path='/test' component={PageTest}/>
                 </Switch>
             </App>
         )}/>
