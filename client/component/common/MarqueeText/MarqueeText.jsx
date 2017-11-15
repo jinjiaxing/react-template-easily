@@ -1,9 +1,9 @@
 /**
  * @file MarqueeText.jsx
- * @desc 上下滚动轮播组件
+ * @desc 上下滚动轮播组件，marqueeData可以是文字数组也可以是react元素数组
  * @create 17/11/12.
  * @author jinjiaxing
- * @update 17/11/13.
+ * @update 17/11/14.
  * @using the example
  * <MarqueeText marqueeData={['aaa','bbb','ccc']}/>
  */
@@ -15,12 +15,11 @@ import PropTypes from 'prop-types';
 class MarqueeText extends Component {
     constructor(props) {
         super(props);
-        this.newsItemHeight = Math.round(parseFloat(document.documentElement.style.fontSize));
     }
 
     static propTypes = {
         className: PropTypes.string,
-        marqueeData: PropTypes.array
+        marqueeData: PropTypes.array,
     };
 
     static defaultProps = {
@@ -29,7 +28,9 @@ class MarqueeText extends Component {
         // 滚动数据
         marqueeData: null,
         // 滚动间隔时间
-        intervalTime: 3000
+        intervalTime: 3000,
+        // 每个item的高度
+        itemHeight: Math.round(parseFloat(document.documentElement.style.fontSize))
     };
 
     setStyle(domNode, key, value) {
@@ -51,18 +52,18 @@ class MarqueeText extends Component {
             this.carouse = setTimeout(() => {
                 if (isInitial) {
                     this.setStyle(domNode, 'transition', '');
-                    this.setStyle(domNode, 'transform', `translate3d(0, ${-this.newsItemHeight}px, 0)`);
+                    this.setStyle(domNode, 'transform', `translate3d(0, ${-this.props.itemHeight}px, 0)`);
                     this.count = 2;
                     this.carouselVertical(this.props.intervalTime);
                 } else {
                     if (this.count == totalSize) {
-                        this.setStyle(domNode, 'transition', '');
-                        this.setStyle(domNode, 'transform', `translate3d(0, ${-this.newsItemHeight}px, 0)`);
+                        this.setStyle(domNode, 'transition', 'all 0s');
+                        this.setStyle(domNode, 'transform', `translate3d(0, ${-this.props.itemHeight}px, 0)`);
                         this.count = 2;
-                        this.carouselVertical(10);
+                        this.carouselVertical(100);
                     } else {
-                        this.setStyle(domNode, 'transition', 'all 1s ease');
-                        this.setStyle(domNode, 'transform', `translate3d(0, ${-this.newsItemHeight * this.count}px, 0)`);
+                        this.setStyle(domNode, 'transition', 'all 0.6s ease');
+                        this.setStyle(domNode, 'transform', `translate3d(0, ${-this.props.itemHeight * this.count}px, 0)`);
                         this.count++;
                         this.carouselVertical(this.props.intervalTime);
                     }
@@ -93,18 +94,17 @@ class MarqueeText extends Component {
             topNewsList.push(marqueeData[0]);
             topNewsList.unshift(marqueeData[marqueeData.length - 1]);
             topNewsArea = topNewsList.map((item, idx) => {
-                if (common.isDom(item)) {
+                if (typeof item !== 'string') {
                     return <div key={idx}>{item}</div>;
                 } else {
-                    return <DefaultItem data={item} height={this.newsItemHeight + 'px'} key={idx}
+                    return <DefaultItem data={item} height={this.props.itemHeight + 'px'} key={idx}
                                         idName={`winner-news-item winnerNewsItem${idx}`}/>
                 }
-
             });
         }
 
         return (
-            <div className={'marqueeConcainer'}>
+            <div className={'marqueeConcainer ' + this.props.className}>
                 <div className="news_item_container" ref={(ref) => {
                     this.topNews = ref
                 }}>{topNewsArea}</div>
