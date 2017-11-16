@@ -1,9 +1,9 @@
 /**
  * @file MarqueeText.jsx
- * @desc 上下滚动轮播组件，marqueeData可以是文字数组也可以是react元素数组
+ * @desc 上下滚动轮播组件，marqueeData可以是文字数组也可以是react元素
  * @create 17/11/12.
  * @author jinjiaxing
- * @update 17/11/14.
+ * @update 17/11/16.
  * @using the example
  * <MarqueeText marqueeData={['aaa','bbb','ccc']}/>
  */
@@ -74,7 +74,7 @@ class MarqueeText extends Component {
 
     componentDidMount() {
 
-        if (this.props.marqueeData && this.props.marqueeData.length > 0) {
+        if (this.props.marqueeData && this.props.marqueeData.length > 1) {
             this.carouselVertical(0, true);
         }
     }
@@ -90,9 +90,15 @@ class MarqueeText extends Component {
         const {marqueeData} = this.props;
         let topNewsArea = '';
         if (marqueeData && marqueeData instanceof Array && marqueeData.length > 0) {
-            let topNewsList = marqueeData.slice(0);
-            topNewsList.push(marqueeData[0]);
-            topNewsList.unshift(marqueeData[marqueeData.length - 1]);
+            let topNewsList;
+            if(marqueeData.length > 1) {
+                topNewsList = marqueeData.slice(0);
+                topNewsList.push(marqueeData[0]);
+                topNewsList.unshift(marqueeData[marqueeData.length - 1]);
+            } else {
+                topNewsList = marqueeData.slice(0);
+            }
+
             topNewsArea = topNewsList.map((item, idx) => {
                 if (typeof item !== 'string') {
                     return <div key={idx}>{item}</div>;
