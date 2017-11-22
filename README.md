@@ -80,6 +80,9 @@ react-template-easily
 
 ## 发布 ##
 	npm run release 或 sh ./build.sh
+	
+## 更新 ##
+	2017/10/22 新增Drawer组件
 
 
 ## 开发人员 ##
