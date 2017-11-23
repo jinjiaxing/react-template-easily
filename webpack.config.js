@@ -23,7 +23,7 @@ let config = {
             'webpack/hot/only-dev-server',
             path.resolve(__dirname, './client/router.jsx')
         ],
-        vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'redux',
+        vendor: ['core-js','react', 'react-dom', 'react-router-dom', 'react-redux', 'redux',
             'redux-thunk', 'prop-types']
 
     },
