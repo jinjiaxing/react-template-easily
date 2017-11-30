@@ -585,4 +585,23 @@
 
     }
 
+    /**
+     * 判断某对象在数组中的index
+     * @param obj Object
+     * @param list Array
+     * @return index Int
+     */
+    common.getObjectInArrayIndex = (obj, list) => {
+        if (!list || !(list instanceof Array)) {
+            return -1;
+        }
+        if (!obj) {
+            return -1;
+        }
+
+        return list.indexOf(list.filter(item => {
+            return JSON.stringify(item) === JSON.stringify(obj)
+        })[0])
+    }
+
 })(window, document);
