@@ -57,8 +57,8 @@ react-template-easily
 		--service http请求类库
 			--Service.jsx	用于ajax/jsonp请求的方法均在此处，应用了promise
 			
-		--sotre
-			--sotre.jsx 
+		--store
+			--store.jsx 
 			
 		--app.jsx 相当于页面的父容器组件进行一些通用处理
 		
@@ -83,6 +83,7 @@ react-template-easily
 	
 ## 更新 ##
 	2017/10/22 新增Drawer组件
+	2017/12/01 修改Toast组件默认样式
 
 
 ## 开发人员 ##

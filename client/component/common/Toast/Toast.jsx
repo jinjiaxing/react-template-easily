@@ -1,6 +1,7 @@
 /**
  * @file Toast 通用Toast组件,模拟IOS Android的Toast框,用于进行一些通知,根据设置的时间自动关闭
  * Created by jinjiaxing on 16/6/17.
+ * update by jinjiaxing on 17/12/1.
  */
 
 import React, {Component} from 'react'
@@ -19,9 +20,6 @@ class Toast extends Component {
             // 显示/关闭时的动画效果类名
             statusClassName: 'frc_tost_fadein'
         }
-
-        // 最大长度
-        this.wrapMaxWidth= document.body.offsetWidth - 90 + 'px';
     }
 
     static propTypes = {
@@ -76,7 +74,7 @@ class Toast extends Component {
         let {className, text} = this.props;
 
         return (
-            <div style={{maxWidth: this.wrapMaxWidth}} className={className+' '+this.state.statusClassName+' frc_tost'}>{text}</div>
+            <div className={className+' '+this.state.statusClassName+' frc_tost'}>{text}</div>
         );
     }
 }
