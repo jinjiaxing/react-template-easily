@@ -1,7 +1,6 @@
 /**
  * @file Toast 通用Toast组件,模拟IOS Android的Toast框,用于进行一些通知,根据设置的时间自动关闭
  * Created by jinjiaxing on 16/6/17.
- * update by jinjiaxing on 17/12/1.
  */
 
 import React, {Component} from 'react'
@@ -37,16 +36,18 @@ class Toast extends Component {
         // tost显示的文字内容
         text: 'tost',
         // 关闭事件handler
-        closeHandler:()=>{},
+        closeHandler: () => {
+        },
         // duration时间结束后的回掉函数
-        callbackFun: () => {}
+        callbackFun: () => {
+        }
     }
 
     componentDidMount() {
         let {duration} = this.props;
         // 根据设置的时间,自动关闭
         if (duration) {
-            this.closeTimer = setTimeout(()=> {
+            this.closeTimer = setTimeout(() => {
                 this.props.callbackFun();
                 this.close();
             }, duration);
@@ -74,30 +75,32 @@ class Toast extends Component {
         let {className, text} = this.props;
 
         return (
-            <div className={className+' '+this.state.statusClassName+' frc_tost'}>{text}</div>
+            <div className='frc_toast_container'>
+                <div className={className + ' ' + this.state.statusClassName + ' frc_tost'}> {text}</div>
+            </div>
         );
     }
 }
 
 export default {
-    toastInstance: function (text, duration, className, callbackFun) {
+    toastInstance: function(text, duration, className, callbackFun) {
         let divEl = document.createElement('div');
         divEl.setAttribute('for', 'toast');
         document.body.appendChild(divEl);
 
-        let closeHandler = ()=>{
+        let closeHandler = () => {
             // 500毫秒后执行,因为关闭动画
-            setTimeout(()=>{
+            setTimeout(() => {
                 ReactDOM.unmountComponentAtNode(divEl);
                 document.body.removeChild(divEl);
-            },500);
+            }, 500);
         }
 
         let props = {
-            className:className,
-            duration:duration,
-            text:text,
-            closeHandler:closeHandler,
+            className: className,
+            duration: duration,
+            text: text,
+            closeHandler: closeHandler,
             callbackFun: callbackFun
         }
 

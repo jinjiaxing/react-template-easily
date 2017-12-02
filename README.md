@@ -84,6 +84,7 @@ react-template-easily
 ## 更新 ##
 	2017/10/22 新增Drawer组件
 	2017/12/01 修改Toast组件默认样式
+	2017/12/02 修改Toast组件结构
 
 
 ## 开发人员 ##
