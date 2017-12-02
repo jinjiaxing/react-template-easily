@@ -84,6 +84,8 @@ class Toast extends Component {
 
 export default {
     toastInstance: function(text, duration, className, callbackFun) {
+        let toastDom = document.getElementsByClassName('frc_toast_container')[0];
+        if(toastDom) return;
         let divEl = document.createElement('div');
         divEl.setAttribute('for', 'toast');
         document.body.appendChild(divEl);
