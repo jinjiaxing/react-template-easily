@@ -1,9 +1,10 @@
 .frc_toast_container{
   display: flex;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 2.5rem;
   justify-content: center;
+  z-index: 99;
 }
 
 
@@ -12,9 +13,6 @@
   color: #fff;
   text-align: center;
   border-radius: 4px;
-  position: absolute;
-  z-index: 99;
-  bottom: 2.5rem;
   opacity: 0;
   transition: opacity .5s linear;
   font-size: 0.7rem;
@@ -23,7 +21,7 @@
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   max-width:16rem;
-  word-wrap:break-word
+  word-wrap:break-word;
 }
 .frc_tost_fadein {
   opacity: 0.7;
