@@ -8,6 +8,10 @@ react-template-easily
 ### URL:
 [https://github.com/jinjiaxing/react-template-easily](https://github.com/jinjiaxing/react-template-easily  )
 
+### Demo:
+[Demo展示（请使用chrome模拟移动端方式查看，或者使用手机查看）](https://github.com/jinjiaxing/react-template-easily/tree/master/webroot/static/react-template-easily/index.html#/test) 
+![截图](http://wx4.sinaimg.cn/mw690/dc462c65ly1fmncfld4ydg20a50iijxz.gif)
+
 ## 技术栈 ##
 * _react:16_
 * _react-dom:16_
