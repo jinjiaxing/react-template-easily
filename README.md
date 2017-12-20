@@ -9,7 +9,7 @@ react-template-easily
 [https://github.com/jinjiaxing/react-template-easily](https://github.com/jinjiaxing/react-template-easily  )
 
 ### Demo:
-[Demo展示（请使用chrome模拟移动端方式查看，或者使用手机查看）](https://jinjiaxing.github.io/react-template-easily/webroot/static/react-template-easily/index.html#/test)   
+[Demo展示（请使用chrome模拟移动端方式查看，或者使用手机查看）](https://jinjiaxing.github.io/react-template-easily/demo/component/index.html#/test)   
 ![截图](http://wx4.sinaimg.cn/mw690/dc462c65ly1fmncfld4ydg20a50iijxz.gif)
 
 ## 技术栈 ##
