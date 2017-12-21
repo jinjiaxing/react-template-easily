@@ -51,5 +51,8 @@
     "webpack-dev-server": "^2.9.2",
     "webpack-upload": "^1.1.1",
     "core-js": "^2.5.1"
+  },
+  "devDependencies": {
+    "react-tap-event-plugin": "^3.0.2"
   }
 }

@@ -3,17 +3,24 @@
  * @desc 入口
  * @author jinjiaxing
  * @data 2017/05/25
+ * @update 2017/12/20
  */
+
+/** lib **/
 import * as React from 'react';
 import * as ReactRedux from 'react-redux';
-import commonAction from './actions/commonAction.jsx';
+import PropTypes from 'prop-types';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+/** other **/
 import Const from './common/constant/Constant.jsx';
 import Common from './common/utils/Common.jsx';
-import PropTypes from 'prop-types';
 
+/** service **/
 import Service from './service/Service.jsx';
 
-
+/** add touch event **/
+injectTapEventPlugin();
 
 const {connect} = ReactRedux;
 
