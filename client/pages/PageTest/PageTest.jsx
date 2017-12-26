@@ -87,6 +87,23 @@ class PageTest extends React.Component {
                 {/*Test Component Section*/}
                 <div className="component_container">
 
+                    <Panel title="Button组">
+                        <div>
+                            <Button text='Button' onClick={(e) => {
+                                console.log('click button!');
+                            }}/>
+                        </div>
+                        <div style={{marginTop: '15px'}}>
+                            <Button text='按钮不可用' isDisable/>
+                        </div>
+
+                        <div style={{marginTop: '15px',display:'flex',justifyContent:'space-between'}}>
+                            <Button text='OK' width='7.8rem'/>
+                            <Button text='Cancel' width='7.8rem'/>
+                        </div>
+
+                    </Panel>
+
                     <Panel title="Tab组件:">
                         <Tab>
                             <TabPane tabTitle='tabTitle1' tabKey='1' defaultSelected>content1</TabPane>
@@ -104,21 +121,7 @@ class PageTest extends React.Component {
                         </Tab>
                     </Panel>
 
-                    <Panel title="Button组">
-                        <div>
-                            <Button text='文字按钮' onClick={(e) => {
-                                console.log(111, e)
-                            }}/>
-                        </div>
-                        <div style={{marginTop: '15px'}}>
-                            <Button text='按钮不可用' isDisable/>
-                        </div>
 
-                        <div style={{marginTop: '15px'}}>
-                            <Button iconClass={'btnIcon'} type='iconButton' text='带图标的Button'/>
-                        </div>
-
-                    </Panel>
 
                     <Panel title="Marquee组件">
                         <MarqueeText marqueeData={['aaa', 'bbb', 'ccc']}/>
