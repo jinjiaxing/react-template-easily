@@ -2,31 +2,20 @@
   display: flex;
   align-items: center;
 
-  .clock_icon {
-    width: 1.1rem;
-    height: 1.1rem;
-    background-position: center;
-    background-size: contain;
-    margin-right: 0.5rem;
-  }
-
   .colon {
-    margin: 0 3px;
-    font-weight: bold;
-    color: #9E9E9E;
+    margin: 0 .05rem;
+    color: #000;
+    font-size: 1rem;
   }
 
   .hour, .minute, .second {
     display: inline-block;
-    width: 1.1rem;
+    width: 100%;
     text-align: center;
-    color: #ffffff;
+    color: #000;
     height: 1rem;
     line-height: 1rem;
-    font-size: 0.7rem;
-    background-image: url("./Img/bg_icon.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    font-size: 1.2rem;
+
   }
 }
