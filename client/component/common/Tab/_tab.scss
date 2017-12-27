@@ -2,13 +2,14 @@ $dividerLineHeight: 1.3rem;
 $diverTop: .45rem;
 $tabHeight: 2.2rem;
 $tabFontSize: .8rem;
+$mainColor: #3385FF; // #f54335
 
 .frc_tabComponent {
   width: 100%;
 
   // 清除浮动
   .clearfix {
-    *zoom:1
+    *zoom: 1
   }
   .clearfix:after {
     display: block;
@@ -30,7 +31,6 @@ $tabFontSize: .8rem;
     display: flex;
     display: -webkit-flex;
 
-
     .frc_tab-item {
       box-sizing: border-box;
       text-align: center;
@@ -46,15 +46,15 @@ $tabFontSize: .8rem;
 
       i {
         position: relative;
-        height:$tabHeight/2;
+        height: $tabHeight/2;
         zoom: .6;
         min-width: 32px;
-        background-repeat:no-repeat;
+        background-repeat: no-repeat;
         background-position: center;
       }
 
       span.icon_text {
-        flex:1;
+        flex: 1;
         display: inline-block;
         line-height: $tabHeight/2;
         font-size: .6rem;
@@ -76,12 +76,11 @@ $tabFontSize: .8rem;
       bottom: -1px;
       left: 5%;
       width: 90%;
-      border-bottom: 2px solid #f54335;
+      border-bottom: 2px solid $mainColor;
     }
 
-
     .frc_tab-item.current {
-      color: #f54345;
+      color: $mainColor;
       position: relative;
 
       &:before {
@@ -96,12 +95,14 @@ $tabFontSize: .8rem;
 
   .frc_tabPane {
     position: relative;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.75rem;
     //top: 1rem;
     //padding-left: 1rem;
     //height: 100px;
     //overflow-y: scroll;
     //overflow-x: hidden;
-
   }
 
 }

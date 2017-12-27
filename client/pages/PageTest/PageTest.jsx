@@ -87,7 +87,7 @@ class PageTest extends React.Component {
                 {/*Test Component Section*/}
                 <div className="component_container">
 
-                    <Panel title="Button组">
+                    <Panel title="Button:">
                         <div>
                             <Button text='Button' onClick={(e) => {
                                 console.log('click button!');
@@ -104,24 +104,25 @@ class PageTest extends React.Component {
 
                     </Panel>
 
-                    <Panel title="Tab组件:">
+                    <Panel title="Tab:">
                         <Tab>
-                            <TabPane tabTitle='tabTitle1' tabKey='1' defaultSelected>content1</TabPane>
-                            <TabPane tabTitle='tabTitle2' tabKey='2' disabled>content2</TabPane>
-                            <TabPane tabTitle='tabTitle3' tabKey='3'>content3</TabPane>
+                            <TabPane tabTitle='HOME' tabKey='1' defaultSelected>
+                                <div style={{fontStyle: 'italic'}}>
+                                    This is Home Content
+                                </div>
+                            </TabPane>
+                            <TabPane tabTitle='ABOUT' tabKey='2'>
+                                <div style={{fontStyle: 'italic',color: 'gray'}}>
+                                    This is ABOUT Content
+                                </div>
+                            </TabPane>
+                            <TabPane tabTitle='HELP' tabKey='3'>
+                                <div style={{fontStyle: 'italic'}}>
+                                    This is HELP Content
+                                </div>
+                            </TabPane>
                         </Tab>
                     </Panel>
-
-                    <Panel title="带Icon的Tab组件">
-                        <Tab>
-                            <TabPane tabTitle='主页' tabKey='1' defaultSelected iconName="home">主页</TabPane>
-                            <TabPane tabTitle='分类' tabKey='2' iconName="classify">分类</TabPane>
-                            <TabPane tabTitle='订单' tabKey='3' iconName="order">订单</TabPane>
-                            <TabPane tabTitle='个人中心' tabKey='4' iconName="mine" hidden={false}>个人中心</TabPane>
-                        </Tab>
-                    </Panel>
-
-
 
                     <Panel title="Marquee组件">
                         <MarqueeText marqueeData={['aaa', 'bbb', 'ccc']}/>

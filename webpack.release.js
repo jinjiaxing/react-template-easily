@@ -2,7 +2,7 @@
  * @file webpack 产品发布打包脚本
  * @author jinjiaxing<34568305@qq.com>
  * @date 17/5/19.
- * @update 17/11/08
+ * @update 17/12/27
  */
 'use strict';
 
@@ -116,7 +116,7 @@ let config = {
         new webpack.optimize.CommonsChunkPlugin(
             {
                 name: 'vendor',
-                filename: 'smartparkinglib.[hash].js?ver='+verforTime
+                filename: 'runtime.[hash].js?ver='+verforTime
             }
         ),
         // 独立打包样式文件
