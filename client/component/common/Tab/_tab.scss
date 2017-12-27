@@ -73,9 +73,8 @@ $mainColor: #3385FF; // #f54335
     @mixin borderStyle() {
       position: absolute;
       content: '';
-      bottom: -1px;
-      left: 5%;
-      width: 90%;
+      bottom: 0px;
+      width: 100%;
       border-bottom: 2px solid $mainColor;
     }
 

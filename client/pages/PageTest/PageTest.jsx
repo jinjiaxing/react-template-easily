@@ -19,7 +19,7 @@ import Header from '../../component/common/Header/Header.jsx';
 import MarqueeText from '../../component/common/MarqueeText/MarqueeText.jsx';
 import Panel from '../../component/common/Panel/Panel.jsx';
 import InputField from '../../component/common/InputField/InputField.jsx';
-import Switch from '../../component/common/Switch/Switch.jsx';
+import Toggle from '../../component/common/Toggle/Toggle.jsx';
 import SelectField from '../../component/common/SelectField/SelectField.jsx';
 import Toast from '../../component/common/Toast/Toast.jsx';
 import Loading from '../../component/common/Loading/Loading.jsx';
@@ -27,6 +27,7 @@ import Menu from '../../component/common/Menu/Menu.jsx';
 import Slider from '../../component/common/Slider/Slider.jsx';
 import Collapse from '../../component/common/Collapse/Collapse.jsx';
 import ImageSlider from '../../component/common/ImageSlider/ImageSlider.jsx'
+
 /**other**/
 const Image = ImageSlider.Image;
 const MenuItem = Menu.MenuItem;
@@ -86,54 +87,61 @@ class PageTest extends React.Component {
 
                 {/*Test Component Section*/}
                 <div className="component_container">
-
-                    <Panel title="Button:">
-                        <div>
-                            <Button text='Button' onClick={(e) => {
-                                console.log('click button!');
-                            }}/>
-                        </div>
-                        <div style={{marginTop: '15px'}}>
-                            <Button text='按钮不可用' isDisable/>
-                        </div>
-
-                        <div style={{marginTop: '15px',display:'flex',justifyContent:'space-between'}}>
-                            <Button text='OK' width='7.8rem'/>
-                            <Button theme='white_empty' text='Cancel' width='7.8rem'/>
-                        </div>
-
-                    </Panel>
-
-                    <Panel title="Tab:">
+                    <Panel title="Tab：">
                         <Tab>
                             <TabPane tabTitle='HOME' tabKey='1' defaultSelected>
-                                <div style={{fontStyle: 'italic'}}>
-                                    This is Home Content
+                                <div style={{fontStyle: 'italic', fontSize: '0.7rem'}}>
+                                    <a href='https://github.com/jinjiaxing/react-template-easily'>This is the entrance
+                                        to the main page！</a>
                                 </div>
                             </TabPane>
                             <TabPane tabTitle='ABOUT' tabKey='2'>
-                                <div style={{fontStyle: 'italic',color: 'gray'}}>
-                                    This is ABOUT Content
+                                <div style={{fontStyle: 'italic', color: 'gray', fontSize: '0.7rem'}}>
+                                    <a href='https://jinjiaxing.github.io/react-template-easily/'>This is the entrance
+                                        to the about page！</a>
                                 </div>
                             </TabPane>
-                            <TabPane tabTitle='HELP' tabKey='3'>
-                                <div style={{fontStyle: 'italic'}}>
-                                    This is HELP Content
+                            <TabPane tabTitle='DEMO' tabKey='3'>
+                                <div style={{fontStyle: 'italic', fontSize: '0.7rem'}}>
+                                    <a href='https://jinjiaxing.github.io/react-template-easily/demo/component/index.html#/test'>
+                                        This is the entrance to the demo page！
+                                    </a>
                                 </div>
                             </TabPane>
                         </Tab>
                     </Panel>
 
-                    <Panel title="Marquee组件">
-                        <MarqueeText marqueeData={['aaa', 'bbb', 'ccc']}/>
+                    <Panel title="Button：">
+                        <div>
+                            <Button text='Button' onClick={(e) => {
+                                Toast.toastInstance('Click Button!',400);
+                                console.log('click button!');
+                            }}/>
+                        </div>
+                        <div style={{marginTop: '15px'}}>
+                            <Button text='Disable' isDisable/>
+                        </div>
+
+                        <div style={{marginTop: '15px', display: 'flex', justifyContent: 'space-between'}}>
+                            <Button text='OK' width='7.8rem' onClick={()=>{Toast.toastInstance('Click OK!',400);}}/>
+                            <Button theme='white_empty' text='Cancel' width='7.8rem' onTouchTap={()=>{Toast.toastInstance('Click Cancel!',400);}}/>
+                        </div>
+
+                    </Panel>
+
+                    <Panel height='5rem' title="Marquee：">
+                        <MarqueeText marqueeData={[
+                            'This is a pretty friendly react component library',
+                            'This is a very useful template for the react project',
+                            'Welcome to use react-template-easily']}/>
                     </Panel>
 
                     <Panel title="SelectField">
                         <SelectField/>
                     </Panel>
 
-                    <Panel title="SwitchField">
-                        <Switch/>
+                    <Panel title="Toggle">
+                        <Toggle/>
                     </Panel>
 
                     <Panel title="Toast组件">

@@ -19,6 +19,7 @@ class Button extends Component {
         theme: PropTypes.oneOf(['blue_fill', 'white_empty']),
         text: PropTypes.string,
         onClick: PropTypes.func,
+        onTouchTap: PropTypes.func,
         className: PropTypes.string,
         iconClass: PropTypes.string,
         isDisable: PropTypes.bool,
@@ -28,7 +29,7 @@ class Button extends Component {
     };
 
     static defaultProps = {
-        theme:'blue_fill',
+        theme: 'blue_fill',
         // 文字内容
         text: 'Button',
         // 点击事件
@@ -40,7 +41,10 @@ class Button extends Component {
         // false 按钮不启用,true按钮可用
         isDisable: false,
         width: '',
-        height: ''
+        height: '',
+        onTouchTap: () => {
+
+        }
     };
 
     componentDidMount() {
@@ -57,12 +61,11 @@ class Button extends Component {
 
         let classText = 'frc_button';
 
-        if(theme ==='blue_fill') {
+        if (theme === 'blue_fill') {
             classText = classText + ' frc_theme_blue';
-        } else if(theme ==='white_empty') {
+        } else if (theme === 'white_empty') {
             classText = classText + ' frc_theme_white';
         }
-
 
         let stateClass = '';
         if (isDisable) {
@@ -76,14 +79,14 @@ class Button extends Component {
         }
 
         let styleProps = {};
-        if(width) {
+        if (width) {
             styleProps['width'] = width;
         }
 
-        if(height) {
+        if (height) {
             styleProps['height'] = height;
         }
-        console.log('styleProps=',styleProps);
+        console.log('styleProps=', styleProps);
 
         return (
             <button disabled={this.props.isDisable}
@@ -97,7 +100,9 @@ class Button extends Component {
                         event.preventDefault();
                         this.props.onClick()
                     }}
-                    onTouchTap={this.props.onTouchTap ? this.props.onTouchTap() : null}
+                    onTouchTap={()=>{
+                        this.props.onTouchTap ? this.props.onTouchTap() : null
+                    }}
                     style={styleProps}>
                 <span>{this.props.text}</span>
             </button>
