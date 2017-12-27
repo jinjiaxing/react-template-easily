@@ -99,7 +99,7 @@ class PageTest extends React.Component {
 
                         <div style={{marginTop: '15px',display:'flex',justifyContent:'space-between'}}>
                             <Button text='OK' width='7.8rem'/>
-                            <Button text='Cancel' width='7.8rem'/>
+                            <Button theme='white_empty' text='Cancel' width='7.8rem'/>
                         </div>
 
                     </Panel>

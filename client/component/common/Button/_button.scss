@@ -7,7 +7,7 @@ $btn_disable:#cccccc;
   color: #ffffff;
   border-radius: 100px;
   width: 100%;
-  height: 2.0rem;
+  height: 1.65rem;
   border: 1px solid $btn_bg_color;
   background-color: $btn_bg_color;
 }
@@ -18,7 +18,19 @@ $btn_disable:#cccccc;
 }
 
 .frc_buttonDisabled {
-  border-color: $btn_disable;
-  color: $btn_disable;
-  background-color: #ffffff;
+  border-color: $btn_disable !important;
+  color: $btn_disable !important;
+  background-color: #ffffff !important;
+}
+
+.frc_theme_blue {
+  color: #ffffff;
+  border: 1px solid $btn_bg_color;
+  background-color: $btn_bg_color;
+}
+
+.frc_theme_white {
+  color: #333333;
+  border: 1px solid #999999;
+  background-color: #FFFFFF;
 }

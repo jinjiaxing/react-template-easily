@@ -15,6 +15,8 @@ class Button extends Component {
     }
 
     static propTypes = {
+        // 预留几种模板样式
+        theme: PropTypes.oneOf(['blue_fill', 'white_empty']),
         text: PropTypes.string,
         onClick: PropTypes.func,
         className: PropTypes.string,
@@ -26,6 +28,7 @@ class Button extends Component {
     };
 
     static defaultProps = {
+        theme:'blue_fill',
         // 文字内容
         text: 'Button',
         // 点击事件
@@ -45,6 +48,7 @@ class Button extends Component {
 
     render() {
         let {
+            theme,
             isDisable,
             className,
             height,
@@ -52,6 +56,14 @@ class Button extends Component {
         } = this.props;
 
         let classText = 'frc_button';
+
+        if(theme ==='blue_fill') {
+            classText = classText + ' frc_theme_blue';
+        } else if(theme ==='white_empty') {
+            classText = classText + ' frc_theme_white';
+        }
+
+
         let stateClass = '';
         if (isDisable) {
             stateClass = 'frc_buttonDisabled';
