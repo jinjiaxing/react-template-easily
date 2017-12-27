@@ -3,7 +3,7 @@
  * 开关组件
  *
  *
- * @desc 百度地图开关组件
+ * @desc 开关组件
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
