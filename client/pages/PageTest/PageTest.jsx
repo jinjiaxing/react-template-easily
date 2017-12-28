@@ -114,7 +114,7 @@ class PageTest extends React.Component {
                     <Panel title="Button：">
                         <div>
                             <Button text='Button' onClick={(e) => {
-                                Toast.toastInstance('Click Button!',400);
+                                Toast.toastInstance('Click Button!', 400);
                                 console.log('click button!');
                             }}/>
                         </div>
@@ -123,8 +123,12 @@ class PageTest extends React.Component {
                         </div>
 
                         <div style={{marginTop: '15px', display: 'flex', justifyContent: 'space-between'}}>
-                            <Button text='OK' width='7.8rem' onClick={()=>{Toast.toastInstance('Click OK!',400);}}/>
-                            <Button theme='white_empty' text='Cancel' width='7.8rem' onTouchTap={()=>{Toast.toastInstance('Click Cancel!',400);}}/>
+                            <Button text='OK' width='7.8rem' onClick={() => {
+                                Toast.toastInstance('Click OK!', 400);
+                            }}/>
+                            <Button theme='white_empty' text='Cancel' width='7.8rem' onTouchTap={() => {
+                                Toast.toastInstance('Click Cancel!', 400);
+                            }}/>
                         </div>
 
                     </Panel>
@@ -136,9 +140,13 @@ class PageTest extends React.Component {
                             'Welcome to use react-template-easily']}/>
                     </Panel>
 
-                    <Panel title="SelectField">
-                        <SelectField/>
-                    </Panel>
+
+                    <Collapse title="Collapse：" defaultFolded={true}>
+                        <div style={{paddingTop:'0.75rem',paddingBottom:'0.75rem'}}>
+                            This is a pretty friendly react component library,very useful template for the react project,Welcome to use it
+                        </div>
+                    </Collapse>
+
 
                     <Panel title="Toggle">
                         <Toggle/>
