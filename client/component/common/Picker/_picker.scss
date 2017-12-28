@@ -122,11 +122,9 @@ div.frc_skin_border {
 
 
 .frc_skin_border > span {
-  border: 1px solid #3385ff;
-  background: #3385ff;
+  border-bottom: 1px solid rgb(232, 232, 232);
   font-size: .7rem;
-  color: #fff;
-  border-radius: 100px;
+  color: rgba(0, 0, 0, 0.87);;
   -webkit-transition: background 0.2s, border-color 0.2s;
   transition: background 0.2s, border-color 0.2s;
 }
@@ -161,10 +159,9 @@ div.frc_skin_border {
 }
 
 .frc_skin_border.frc_active > span {
-  border-radius: 100px;
-  border: 1px solid #2980b9;
+  border-bottom: 1px solid rgb(232, 232, 232);
   background: #fff;
-  color: #2980b9;
+  color: #3385ff;
 }
 
 .frc_skin_border .frc_options {
@@ -207,4 +204,5 @@ div.frc_skin_border {
   75%{transform: scale(1,0.75);}
   100%{transform: scale(1,1);}
 }
+
 
