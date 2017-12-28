@@ -171,29 +171,29 @@ class Timer extends Component {
         const timeData = this.getTime();
 
         return (
-            <div className={"timer " + this.props.className}>
+            <div className={"frc_timer" + this.props.className}>
                 {this.state.day !== 0 ?
                     <span>
-                        <span className="hour">
+                        <span className="frc_hour">
                             {this.state.day}
                         </span>
-                        <span className="colon">{this.state.types[0]}</span>
+                        <span className="frc_colon">{this.state.types[0]}</span>
                     </span>
 
                     : null}
-                <span className="hour">
+                <span className="frc_hour">
                     {timeData.hours}
                 </span>
-                <span className="colon">{this.state.types[1]}</span>
-                <span className="minute">
+                <span className="frc_colon">{this.state.types[1]}</span>
+                <span className="frc_minute">
                     {timeData.minutes}
                 </span>
-                <span className="colon">{this.state.types[2]}</span>
-                <span className="second">
+                <span className="frc_colon">{this.state.types[2]}</span>
+                <span className="frc_second">
                     {timeData.seconds}
                 </span>
                 {this.props.type === 'time' ?
-                    <span className="colon">{this.state.types[3]}</span> :null}
+                    <span className="frc_colon">{this.state.types[3]}</span> :null}
 
 
             </div>
