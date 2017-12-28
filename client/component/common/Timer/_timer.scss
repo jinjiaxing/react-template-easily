@@ -1,14 +1,14 @@
-.timer {
+.frc_timer {
   display: flex;
   align-items: center;
 
-  .colon {
+  .frc_colon {
     margin: 0 .05rem;
     color: #000;
     font-size: 1rem;
   }
 
-  .hour, .minute, .second {
+  .frc_hour, .frc_minute, .frc_second {
     display: inline-block;
     width: 100%;
     text-align: center;

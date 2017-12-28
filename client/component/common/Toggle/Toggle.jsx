@@ -5,6 +5,7 @@
  *
  * @desc 开关组件
  */
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import './_toggle.scss';
@@ -42,21 +43,21 @@ class Toggle extends React.Component {
         let classStyle = [];
         switch (this.props.style) {
             case 'Simple':
-                classStyle.push('mui-switch');
+                classStyle.push('frc_switch');
                 break;
             case 'Simple_anim_bg':
-                classStyle.push('mui-switch mui-switch-animbg');
+                classStyle.push('frc_switch frc_switch_animbg');
                 break;
             case 'anim_bg':
-                classStyle.push('mui-switch mui-switch-anim');
+                classStyle.push('frc_switch frc_switch_anim');
                 break;
             default:
-                classStyle.push('mui-switch');
+                classStyle.push('frc_switch');
                 break;
         }
 
         return (
-            <div className = 'mui-switch-con'>
+            <div className = 'frc_switch_con'>
                 <label>
                     <input className={`${classStyle} ${this.props.className}`}
                            type="checkbox"

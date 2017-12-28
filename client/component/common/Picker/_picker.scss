@@ -1,0 +1,208 @@
+/* Default custom select styles */
+div.frc_select {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  text-align: left;
+  background: #fff;
+  z-index: 20;
+  width: 100%;
+  max-width: 500px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+div.frc_select:focus {
+  outline: none; /* For better accessibility add a style for this in your skin */
+}
+
+.frc_select select {
+  display: none;
+}
+
+.frc_select span {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Placeholder and selected option */
+.frc_select > span {
+  padding-right: 3em;
+}
+
+.frc_select > span::after,
+.frc_select .frc_selected span::after {
+  speak: none;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.frc_select > span::after {
+  content: '\25BE';
+  right: 1em;
+}
+
+.frc_select .frc_selected span::after {
+  content: '\2713';
+  margin-left: 1em;
+}
+
+.frc_select.frc_active ul{
+  max-height: 250px;
+  -webkit-animation: slide-down .3s ease-in;
+  transition: max-height .3s ease-in;
+  transform-origin: 50% 0;
+}
+
+
+.frc_select.frc_active > span::after {
+  -webkit-transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Options */
+.frc_select .frc_options {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  background: #fff;
+  visibility: hidden;
+
+}
+
+.frc_select.frc_active .frc_options {
+  visibility: visible;
+}
+
+.frc_select ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-height: 0;
+  transition: max-height .3s ease-out;
+}
+
+.frc_select ul span {
+  padding: 1em;
+}
+
+.frc_select ul li.frc_focus span {
+  background-color: #ddd;
+}
+
+/* Optgroup and optgroup label */
+.frc_select li.frc_optgroup ul {
+  padding-left: 1em;
+}
+
+.frc_select li.frc_optgroup > span {
+  cursor: default;
+}
+
+div.frc_skin_border {
+  background: transparent;
+  font-size: 2em;
+  font-weight: 700;
+  max-width: 600px;
+}
+
+
+.frc_skin_border > span {
+  border-bottom: 1px solid rgb(232, 232, 232);
+  font-size: .7rem;
+  color: rgba(0, 0, 0, 0.87);;
+  -webkit-transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.frc_select_disable > span{
+  border: 1px solid #fff;
+  background: #fff;
+  font-size: .7rem;
+  color: #ccc;
+  border-radius: 100px;
+  -webkit-transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.frc_skin_border > span::after,
+.frc_skin_border .frc_selected span::after {
+  font-family: 'icomoon';
+}
+
+.frc_skin_border ul span::after {
+  content: '';
+  opacity: 0;
+}
+
+.frc_skin_border .frc_selected span::after {
+  content: '\e00e';
+  color: #ddd9c9;
+  font-size: 1.5em;
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.frc_skin_border.frc_active > span {
+  border-bottom: 1px solid rgb(232, 232, 232);
+  background: #fff;
+  color: #3385ff;
+}
+
+.frc_skin_border .frc_options {
+  color: #000;
+  font-size: 0.75em;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s, visibility 0s 0.2s;
+  transition: opacity 0.2s, visibility 0s 0.2s;
+}
+
+.frc_skin_border .frc_options .active{
+  color: #3385ff;
+  max-height: 250px;
+  -webkit-animation: slide-down .5s ease-in;
+  transition: max-height .3s ease-in;
+  transform-origin: 50% 0;
+}
+
+.frc_skin_border.frc_active .frc_options {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.frc_skin_border ul span {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  font-size: .8rem;
+}
+
+.frc_skin_border .frc_options li span:hover,
+.frc_skin_border li.frc_focus span {
+  background: #f5f3ec;
+}
+
+@-webkit-keyframes slide-down{
+  0%{transform: scale(1,0);}
+  25%{transform: scale(1,0.25);}
+  50%{transform: scale(1,0.5);}
+  75%{transform: scale(1,0.75);}
+  100%{transform: scale(1,1);}
+}
+
+
