@@ -60,6 +60,14 @@ div.frc_select:focus {
   margin-left: 1em;
 }
 
+.frc_select.frc_active ul{
+  max-height: 250px;
+  -webkit-animation: slide-down .3s ease-in;
+  transition: max-height .3s ease-in;
+  transform-origin: 50% 0;
+}
+
+
 .frc_select.frc_active > span::after {
   -webkit-transform: translateY(-50%) rotate(180deg);
   transform: translateY(-50%) rotate(180deg);
@@ -72,6 +80,7 @@ div.frc_select:focus {
   width: 100%;
   background: #fff;
   visibility: hidden;
+
 }
 
 .frc_select.frc_active .frc_options {
@@ -83,6 +92,8 @@ div.frc_select:focus {
   margin: 0;
   padding: 0;
   width: 100%;
+  max-height: 0;
+  transition: max-height .3s ease-out;
 }
 
 .frc_select ul span {
@@ -166,7 +177,10 @@ div.frc_skin_border {
 
 .frc_skin_border .frc_options .active{
   color: #3385ff;
-
+  max-height: 250px;
+  -webkit-animation: slide-down .5s ease-in;
+  transition: max-height .3s ease-in;
+  transform-origin: 50% 0;
 }
 
 .frc_skin_border.frc_active .frc_options {
@@ -184,5 +198,13 @@ div.frc_skin_border {
 .frc_skin_border .frc_options li span:hover,
 .frc_skin_border li.frc_focus span {
   background: #f5f3ec;
+}
+
+@-webkit-keyframes slide-down{
+  0%{transform: scale(1,0);}
+  25%{transform: scale(1,0.25);}
+  50%{transform: scale(1,0.5);}
+  75%{transform: scale(1,0.75);}
+  100%{transform: scale(1,1);}
 }
 
