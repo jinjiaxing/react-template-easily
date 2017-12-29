@@ -1,8 +1,11 @@
 /**
  * Created by zengruofan on 16/6/14.
+ * @editor yangchao
+ * @updateTime 17/12/29
+ * @desc 选择器组件
  */
 import React, { Component } from 'react'
-import './_picker.scss';
+import './_selectfiled.scss';
 import PropTypes from 'prop-types';
 
 class Picker extends React.Component {
