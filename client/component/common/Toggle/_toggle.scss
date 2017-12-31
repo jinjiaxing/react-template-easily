@@ -7,7 +7,10 @@ $checkedColor: #3385ff;
 .frc_switch_con {
   margin-top: 10px;
   font-size: 16px;
-  display: block;
+  display: flex;
+  .frc_toggle_text{
+    line-height: 31px;
+  }
 
   .frc_switch {
     width: 52px;

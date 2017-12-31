@@ -8,11 +8,12 @@ Timer
 
 Name | Type | Default | Description
 ---  |  --- | --- | ---  
-initValue | string | 0 |初始时间| 
+initValue | number | 0 |初始时间| 
 className | string | |附加类名|
 order | string | asce | asce正序计时，desc逆序计时 |
-type | string | : |分隔符，支持':' '/' 'time(时分秒)'| 
-timeup | string | 0 | 截至时间(格式需和initValue一致)|
+type | string | : |分隔符，支持任意字符，'time(时分秒)'| 
+timeup | number | 0 | 截至时间|
 newDay | bool | false |满二十四小时是否加一天| 
 id | string | |定时器的唯一标识|
+timeUpHandler | func | | 到达截至时间的回调函数 |
 

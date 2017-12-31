@@ -1,11 +1,10 @@
-Picker
+SelectFiled
 ===
 
-
 ### 描述：
->**Picker** 是一个选择器组件，可传入需要展示的数据，是否禁用，默认展示的文本，自定义回调函数。
+>**SelectFiled** 是一个选择器组件，可传入需要展示的数据，是否禁用，默认展示的文本，自定义回调函数。
 
-## Picker Properties
+## SelectFiled Properties
 
 Name | Type | Default | Description
 ---  |  --- | --- | ---  

@@ -44,15 +44,21 @@ div.frc_select:focus {
   speak: none;
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  //-webkit-transform: translateY(-50%);
+  //transform: translateY(-50%);
+  //-webkit-font-smoothing: antialiased;
+  //-moz-osx-font-smoothing: grayscale;
 }
 
 .frc_select > span::after {
   content: '\25BE';
   right: 1em;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition:All 0.4s ease-in-out;
+  -webkit-transition:All 0.4s ease-in-out;
+  -moz-transition:All 0.4s ease-in-out;
+  -o-transition:All 0.4s ease-in-out;
 }
 
 .frc_select .frc_selected span::after {
@@ -71,6 +77,10 @@ div.frc_select:focus {
 .frc_select.frc_active > span::after {
   -webkit-transform: translateY(-50%) rotate(180deg);
   transform: translateY(-50%) rotate(180deg);
+  transition:All 0.4s ease-in-out;
+  -webkit-transition:All 0.4s ease-in-out;
+  -moz-transition:All 0.4s ease-in-out;
+  -o-transition:All 0.4s ease-in-out;
 }
 
 /* Options */

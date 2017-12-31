@@ -1,7 +1,11 @@
 .frc_timer {
   display: flex;
   align-items: center;
-
+  font-size: 1.2rem;
+  color: #000;
+  height: 1rem;
+  text-align: center;
+  line-height: 1rem;
   .frc_colon {
     margin: 0 .05rem;
     color: #000;
@@ -11,11 +15,6 @@
   .frc_hour, .frc_minute, .frc_second {
     display: inline-block;
     width: 100%;
-    text-align: center;
-    color: #000;
-    height: 1rem;
-    line-height: 1rem;
-    font-size: 1.2rem;
 
   }
 }

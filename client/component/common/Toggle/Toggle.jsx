@@ -7,6 +7,7 @@
  */
 
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
 import './_toggle.scss';
 
@@ -27,7 +28,15 @@ class Toggle extends React.Component {
         // 回调函数
         handler: PropTypes.func,
         // 默认是否选中
-        defaultChecked: PropTypes.bool
+        defaultChecked: PropTypes.bool,
+        // 文本自定义类名
+        classText: PropTypes.string,
+        // 文本在左边还是右边
+        position: PropTypes.oneOf(['left', 'right']),
+        // 文字与开关的距离
+        distance: PropTypes.string,
+        // 开关的唯一标识
+        id: PropTypes.string
 
     }
 
@@ -35,8 +44,15 @@ class Toggle extends React.Component {
         disable: false,
         className: '',
         style: 'Simple_anim_bg',
-        text: ''
+        text: '',
+        classText: '',
+        position: 'left',
+        distance: '10px',
+        id: 'one'
+    }
 
+    switch(){
+        ReactDOM.findDOMNode(this.refs['toggle_'+this.props.id]).checked = !ReactDOM.findDOMNode(this.refs['toggle_'+this.props.id]).checked
     }
 
     render() {
@@ -57,14 +73,21 @@ class Toggle extends React.Component {
         }
 
         return (
-            <div className = 'frc_switch_con'>
-                <label>
-                    <input className={`${classStyle} ${this.props.className}`}
-                           type="checkbox"
-                           disabled = {this.props.disable} defaultChecked={this.props.selected}
-                           onChange = {this.props.handler}
-                    /> {this.props.text}
-                </label>
+            <div className='frc_switch_con'>
+                {this.props.position === 'left' ? <span onClick = {this.switch.bind(this)} style={{'marginRight':this.props.distance}} className={`frc_toggle_text ${this.props.classText}`}>
+                    {this.props.text}
+                </span> : null}
+
+                <input className={`${classStyle} ${this.props.className}`}
+                       id = {this.props.id}
+                       type="checkbox" ref = {`toggle_${this.props.id}`}
+                       disabled = {this.props.disable} defaultChecked={this.props.selected}
+                       onChange = {this.props.handler}
+                />
+                {this.props.position === 'right' ? <span onClick = {this.switch.bind(this)} style={{'marginLeft':this.props.distance}} className={`frc_toggle_text ${this.props.classText}`}>
+                    {this.props.text}
+                </span> : null}
+
             </div>
         );
     }
