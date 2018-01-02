@@ -20,14 +20,14 @@ import MarqueeText from '../../component/common/MarqueeText/MarqueeText.jsx';
 import Panel from '../../component/common/Panel/Panel.jsx';
 import InputField from '../../component/common/InputField/InputField.jsx';
 import Toggle from '../../component/common/Toggle/Toggle.jsx';
-import SelectField from '../../component/common/SelectField/SelectField.jsx';
 import Toast from '../../component/common/Toast/Toast.jsx';
 import Loading from '../../component/common/Loading/Loading.jsx';
 import Menu from '../../component/common/Menu/Menu.jsx';
 import Slider from '../../component/common/Slider/Slider.jsx';
 import Collapse from '../../component/common/Collapse/Collapse.jsx';
 import ImageSlider from '../../component/common/ImageSlider/ImageSlider.jsx'
-
+import Timer from '../../component/common/Timer/Timer.jsx';
+import Drawer from '../../component/common/Drawer/Drawer.jsx';
 /**other**/
 const Image = ImageSlider.Image;
 const MenuItem = Menu.MenuItem;
@@ -40,7 +40,8 @@ class PageTest extends React.Component {
         this.state = {
             isVisiable: false,
             operation_isVisiable: false,
-            sliderDisplayValue: defaultSliderValue
+            sliderDisplayValue: defaultSliderValue,
+            openDrawer:false
         }
     }
 
@@ -82,7 +83,7 @@ class PageTest extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{height:'100%'}}>
                 <Header back={true} titleName="React Component"/>
 
                 {/*Test Component Section*/}
@@ -142,8 +143,9 @@ class PageTest extends React.Component {
 
 
                     <Collapse title="Collapse：" defaultFolded={true}>
-                        <div style={{paddingTop:'0.75rem',paddingBottom:'0.75rem'}}>
-                            This is a pretty friendly react component library,very useful template for the react project,Welcome to use it
+                        <div style={{paddingTop: '0.75rem', paddingBottom: '0.75rem'}}>
+                            This is a pretty friendly react component library,very useful template for the react
+                            project,Welcome to use it
                         </div>
                     </Collapse>
 
@@ -152,52 +154,57 @@ class PageTest extends React.Component {
                         <Toggle/>
                     </Panel>
 
-                    <Panel title="Toast组件">
-                        <Button text='弹出Toast' onClick={(e) => {
+                    <Panel title="Toast：">
+                        <Button text='Open Toast' onClick={(e) => {
                             Toast.toastInstance('react-template-easily', 1500);
                         }}/>
                     </Panel>
 
-                    <Panel title="Loading组件">
+                    <Panel title='Timer：'>
+                        <Timer />
+                        <div style={{marginTop: '1rem'}}>
+                            <Timer order='desc' type=':' initValue={600}/>
+                        </div>
+                    </Panel>
+
+                    <Panel title="Loading：">
                         <Button text='Loading' onClick={() => {
                             Loading.show();
                             setTimeout(() => {
                                 Loading.disappear();
                             }, 3000);
                         }}/>
-                        <p style={{fontSize: '15px', marginTop: '10px'}}>这里,设置Loading 3s后自动消失</p>
+                        <p style={{fontSize: '14px', marginTop: '10px'}}>wait for 3 seconds</p>
                     </Panel>
 
-                    <Collapse title="Menu组件" defaultFolded={true}>
-                        <Panel>
-                            <Menu>
-                                <MenuItem onItemClick={this.onItemClick}>
-                                    <Button iconClass={'btnIcon'} type='iconButton' text='text1'/>
-                                </MenuItem>
-                                <MenuItem>text2</MenuItem>
-                                <MenuItem>text3</MenuItem>
-                                <MenuItem>text4</MenuItem>
-                            </Menu>
-                        </Panel>
-                    </Collapse>
-
-                    <Panel title="Slider组件">
-                        <Slider max={80} min={0} defaultValue={defaultSliderValue} sliderWidth={14} fixed={1}
-                                onChange={(value) => {
-                                    this.setState({sliderDisplayValue: value});
-
-                                }}/>
-                        <span className="sliderDisplayValue">{this.state.sliderDisplayValue}</span>
+                    <Panel title='Drawer：'>
+                        <Button text='Open Drawer' onClick={() => {
+                            this.setState({openDrawer:true})
+                        }}/>
+                        <Drawer direction={'left'} open={this.state.openDrawer} onOpenChange={()=>{this.setState({openDrawer:false})}}>
+                            This is Drawer Component!
+                        </Drawer>
                     </Panel>
 
-                    <Panel title="ImageSlider组件">
-                        <ImageSlider>
-                            <Image src={img1}></Image>
-                            <Image src={img2}></Image>
-                            <Image src={img3}></Image>
-                            <Image src={img4}></Image>
-                        </ImageSlider>
-                    </Panel>
+
+
+                    {/*<Panel title="Slider组件">*/}
+                        {/*<Slider max={80} min={0} defaultValue={defaultSliderValue} sliderWidth={14} fixed={1}*/}
+                                {/*onChange={(value) => {*/}
+                                    {/*this.setState({sliderDisplayValue: value});*/}
+
+                                {/*}}/>*/}
+                        {/*<span className="sliderDisplayValue">{this.state.sliderDisplayValue}</span>*/}
+                    {/*</Panel>*/}
+
+                    {/*<Panel title="ImageSlider组件">*/}
+                        {/*<ImageSlider>*/}
+                            {/*<Image src={img1}></Image>*/}
+                            {/*<Image src={img2}></Image>*/}
+                            {/*<Image src={img3}></Image>*/}
+                            {/*<Image src={img4}></Image>*/}
+                        {/*</ImageSlider>*/}
+                    {/*</Panel>*/}
 
 
                 </div>

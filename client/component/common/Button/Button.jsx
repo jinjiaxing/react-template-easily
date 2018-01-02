@@ -86,7 +86,6 @@ class Button extends Component {
         if (height) {
             styleProps['height'] = height;
         }
-        console.log('styleProps=', styleProps);
 
         return (
             <button disabled={this.props.isDisable}

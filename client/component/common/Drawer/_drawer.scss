@@ -1,12 +1,15 @@
 .drawerContainer {
-  position: absolute;
+  position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 100%;
   overflow: hidden;
-  .maskPanel{
+  z-index: 2;
+  visibility: hidden;
+  .maskPanel {
     height: 100%;
-    width:100%;
+    width: 100%;
     position: absolute;
     background: rgba(0, 0, 0, 0.50);
     z-index: 20;
@@ -40,4 +43,12 @@
     transition: transform .3s ease-out;
     will-change: transform;
   }
+
+  .contentPanel_left {
+    left: 0 !important;
+  }
+}
+
+.drawerContainer_show {
+  visibility: visible;
 }

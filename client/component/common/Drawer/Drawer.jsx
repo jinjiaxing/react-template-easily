@@ -34,17 +34,20 @@ class Drawer extends Component {
     render() {
         let {open} = this.props;
 
-        let contentPanelClass, maskPanelClass;
+
+        let contentPanelClass, maskPanelClass, containerClass;
         if (open === true) {
             contentPanelClass = 'contentPanel showPanel';
             maskPanelClass = 'maskPanel showMask';
+            containerClass = 'drawerContainer drawerContainer_show';
         } else {
             contentPanelClass = 'contentPanel hidePanel';
             maskPanelClass = 'maskPanel';
+            containerClass = 'drawerContainer';
         }
 
         return (
-            <div className='drawerContainer'>
+            <div className={containerClass}>
                 <div className={maskPanelClass} onClick={this.hidePanel.bind(this)}></div>
                 <div className={contentPanelClass}>
                     {this.props.children}
@@ -56,8 +59,7 @@ class Drawer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-    }
+    return {}
 };
 
 Drawer = connect(mapStateToProps)(Drawer);

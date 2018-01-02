@@ -42,7 +42,7 @@
       width: 0.8rem;
       height: 0.8rem;
       margin-right: 0.5rem;
-      transition: transfrom .5s ease-in-out 0ms;
+      transition: transform .3s ease-in-out 0ms;
     }
 
     .frc_collapse_header_icon.fold {
@@ -70,12 +70,11 @@
   }
 
   .frc_collapse_content {
-    //margin: 0;
     position: relative;
     padding-left: .75rem;
     padding-right: .75rem;
     font-size: .7rem;
-    transition: max-height .5s ease-in-out 0ms;
+    transition: max-height .3s ease-in-out 0ms;
     overflow: hidden;
     &:before {
       content: '';
