@@ -10,7 +10,7 @@ react-template-easily
 
 ### Demo:
 [Demo展示（请使用chrome模拟移动端方式查看，或者使用手机查看）](https://jinjiaxing.github.io/react-template-easily/demo/component/index.html#/test)   
-![截图](http://wx1.sinaimg.cn/mw690/dc462c65ly1fn2ic101esg20a50iinax.gif)
+![截图](http://wx4.sinaimg.cn/mw690/dc462c65ly1fn2iivrwysg20ab0i5qj0.gif)
 
 ## 技术栈 ##
 * _react:16_
