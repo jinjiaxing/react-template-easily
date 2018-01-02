@@ -28,7 +28,7 @@ class Toggle extends React.Component {
         // 回调函数
         handler: PropTypes.func,
         // 默认是否选中
-        defaultChecked: PropTypes.bool,
+        selected: PropTypes.bool,
         // 文本自定义类名
         classText: PropTypes.string,
         // 文本在左边还是右边
@@ -48,7 +48,8 @@ class Toggle extends React.Component {
         classText: '',
         position: 'left',
         distance: '10px',
-        id: 'one'
+        id: 'one',
+        selected:false
     }
 
     switch(){

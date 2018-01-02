@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 import './_selectfiled.scss';
 import PropTypes from 'prop-types';
 
-class Picker extends React.Component {
+class SelectFiled extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -81,4 +81,4 @@ class Picker extends React.Component {
     }
 }
 
-export default Picker;
+export default SelectFiled;

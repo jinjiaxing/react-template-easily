@@ -1,113 +1,118 @@
-
-#com_dialog {
+.dialogForBaiduMap_container{
   position: fixed;
-  left: 0;
   top: 0;
-}
-.com_dialog {
-
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.40);
+  height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  z-index: 99;
 
+  .content_container{
+    background-color: white;
+    border-radius: 12px;
 
-  .dialog_mask {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: #000000;
-    opacity: 0.3;
-    z-index: 3;
-  }
+    .close_btn{
+      width:100%;
+      height: 1.47rem;
+      position: relative;
 
-  .dialog_content {
-    position: relative;
-    bottom: 1rem;
-    width: 12.5rem;
-    margin: auto;
-    background-color: #ffffff;
-    z-index: 4;
-    border-radius: 2px;
-  }
-
-  .dialog_closed {
-    position: absolute;
-    right: 0.4rem;
-    top: 0.3rem;
-    width: 0.6rem;
-    height: 0.6rem;
-  }
-
-  .dialog_icon {
-    display: flex;
-    justify-content: center;
-    .frc_icon {
-      width: 6.3rem;
-      height: 7.2rem;
-      background-position: center;
-      background-size: contain;
-      text-align: center;
-      margin-top: -4.5rem;
-    }
-  }
-
-  .dialog_title_content {
-    position: relative;
-    margin-left: 1rem;
-    margin-right: 0.9rem;
-    margin-top: 1rem;
-    margin-bottom: 0.8rem;
-    z-index: 6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #333333;
-
-
-    .status_title {
-      font-size: 0.9rem;
-      font-weight: bold;
-    }
-    .status_content {
-      font-size: 0.7rem;
-      margin-top: 0.5rem;
-    }
-  }
-
-
-  .dialog_btn_group {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2.2rem;
-    line-height: 2.2rem;
-    display: flex;
-    border-top: 1px solid #e6e6e6;
-    box-sizing: border-box;
-
-    button {
-      flex:1;
-      height: 100%;
-      border: none;
-      outline: none;
-      font-size: 0.7rem;
-      &:first-of-type {
-        border-bottom-left-radius: 2px
-      }
-      &:last-of-type {
-        border-bottom-right-radius: 2px;
+      .c_img {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        height: 1.47rem;
+        width: 1.395rem;
+        background-size: 100% 100%;
       }
     }
-    .btn1 {
-      background-color: #f4f4f4;
-      color: #333333;
+
+    .message_twoBtn_title_nodesc{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 1.95rem;
+      padding-left: 1.05rem;
+      padding-right: 1.05rem;
+
+      .title {
+        margin-top: 1.05rem;
+        font-size: 0.85rem;
+        display: inline-block;
+        width:100%;
+        text-align: center;
+        line-height: 1rem;
+        color:#000000;
+      }
+
+      .desc{
+        color:#999999;
+        font-size:0.7rem;
+        margin-top: 0.55rem;
+      }
+      .btn1 {
+        margin-top: 2.425rem;
+        width:7.85rem;
+        height:1.6rem;
+        background-color: #4580fa;
+        border: 0;
+        border-radius: 25px;
+        font-size:0.7rem;
+        line-height: 1.6rem;
+      }
+
+      .btn2 {
+        margin-top: 0.75rem;
+        width:7.85rem;
+        height:1.6rem;
+        background-color: transparent;
+        border: 1px solid #4580fa;
+        border-radius: 25px;
+        font-size:0.7rem;
+        line-height: 1.6rem;
+        color:#4580fa;
+      }
     }
-    .btn2 {
-      background-color: #f54336;
-      color: #ffffff;
+
+    .message_oneBtn_title{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      padding-left: 2.3rem;
+      padding-right: 2.3rem;
+
+      .title {
+        color: #333;
+        font-size: 0.8rem;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+      }
+
+      .desc{
+        color:#999999;
+        font-size:0.7rem;
+        margin-top: 0.55rem;
+        line-height: 1rem;
+        text-align: center;
+      }
+      .btn1 {
+        margin-top: 0.825rem;
+        width: 7.15rem;
+        height: 1.6rem;
+        background-color: #3385ff;
+        border: 0;
+        border-radius: 48px;
+        font-size: 0.8rem;
+        color: #ffffff;
+        line-height: 1.6rem;
+        box-shadow: 0 6px 20px 0 rgba(51,133,255,0.50);
+        font-weight: initial;
+      }
+
     }
   }
 

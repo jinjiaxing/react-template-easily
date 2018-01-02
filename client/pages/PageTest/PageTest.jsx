@@ -18,7 +18,7 @@ import Tab from '../../component/common/Tab/Tab.jsx';
 import Header from '../../component/common/Header/Header.jsx';
 import MarqueeText from '../../component/common/MarqueeText/MarqueeText.jsx';
 import Panel from '../../component/common/Panel/Panel.jsx';
-import InputField from '../../component/common/InputField/InputField.jsx';
+import SelectFiled from '../../component/common/SelectFiled/SelectFiled.jsx';
 import Toggle from '../../component/common/Toggle/Toggle.jsx';
 import Toast from '../../component/common/Toast/Toast.jsx';
 import Loading from '../../component/common/Loading/Loading.jsx';
@@ -28,6 +28,8 @@ import Collapse from '../../component/common/Collapse/Collapse.jsx';
 import ImageSlider from '../../component/common/ImageSlider/ImageSlider.jsx'
 import Timer from '../../component/common/Timer/Timer.jsx';
 import Drawer from '../../component/common/Drawer/Drawer.jsx';
+import DatePicker from '../../component/common/DatePicker/DatePicker.jsx';
+import Dialog from '../../component/common/Dialog/Dialog.jsx';
 /**other**/
 const Image = ImageSlider.Image;
 const MenuItem = Menu.MenuItem;
@@ -37,11 +39,14 @@ const defaultSliderValue = 0;
 class PageTest extends React.Component {
     constructor(props) {
         super(props);
+        this.timerDesc = 6000;
+        this.timerAsce = 0;
         this.state = {
             isVisiable: false,
             operation_isVisiable: false,
             sliderDisplayValue: defaultSliderValue,
-            openDrawer:false
+            openDrawer:false,
+            openDatePicker:false
         }
     }
 
@@ -149,9 +154,13 @@ class PageTest extends React.Component {
                         </div>
                     </Collapse>
 
+                    <Panel title='SelectFiled：'>
+                        <SelectFiled></SelectFiled>
+                    </Panel>
 
                     <Panel title="Toggle">
-                        <Toggle/>
+                        <Toggle text='React' selected={true}/>
+                        <Toggle text='Redux'/>
                     </Panel>
 
                     <Panel title="Toast：">
@@ -161,11 +170,38 @@ class PageTest extends React.Component {
                     </Panel>
 
                     <Panel title='Timer：'>
-                        <Timer />
+                        <Timer initValue={this.timerAsce}/>
                         <div style={{marginTop: '1rem'}}>
-                            <Timer order='desc' type=':' initValue={600}/>
+                            <Timer order='desc' type=':' initValue={this.timerDesc}/>
                         </div>
                     </Panel>
+
+                    <Panel title='DatePicker'>
+                        <Button text='Open DatePicker' onClick={() => {
+                            this.setState({openDatePicker:true})
+                        }}/>
+                        <DatePicker isOpen={this.state.openDatePicker}
+                                    onCancel={()=>{this.setState({openDatePicker:false})}}
+                                    onSelect={()=>{this.setState({openDatePicker:false})}}/>
+                    </Panel>
+
+                    <Panel title="Slider：">
+                        <Slider max={80} min={0} defaultValue={defaultSliderValue} sliderWidth={14} fixed={1}
+                                onChange={(value) => {
+                                    this.setState({sliderDisplayValue: value});
+
+                                }}/>
+                        <span className="sliderDisplayValue">{this.state.sliderDisplayValue}</span>
+                    </Panel>
+
+                    <Panel title='Dialog：'>
+                        <Button text='Open Dailog' onClick={() => {
+                            Dialog.toInstance('React-Template-Easliy','OK','Cancel',()=>{Dialog.closeHandler()})
+                        }}/>
+                    </Panel>
+
+
+
 
                     <Panel title="Loading：">
                         <Button text='Loading' onClick={() => {
@@ -182,22 +218,19 @@ class PageTest extends React.Component {
                             this.setState({openDrawer:true})
                         }}/>
                         <Drawer direction={'left'} open={this.state.openDrawer} onOpenChange={()=>{this.setState({openDrawer:false})}}>
-                            This is Drawer Component!
+                            <div className='flex-center' style={{height:'100%',width:'100%'}}>
+                                This is Drawer Component!
+                            </div>
                         </Drawer>
                     </Panel>
 
 
 
-                    {/*<Panel title="Slider组件">*/}
-                        {/*<Slider max={80} min={0} defaultValue={defaultSliderValue} sliderWidth={14} fixed={1}*/}
-                                {/*onChange={(value) => {*/}
-                                    {/*this.setState({sliderDisplayValue: value});*/}
 
-                                {/*}}/>*/}
-                        {/*<span className="sliderDisplayValue">{this.state.sliderDisplayValue}</span>*/}
-                    {/*</Panel>*/}
 
-                    {/*<Panel title="ImageSlider组件">*/}
+
+
+                    {/*<Panel title="CardSlider">*/}
                         {/*<ImageSlider>*/}
                             {/*<Image src={img1}></Image>*/}
                             {/*<Image src={img2}></Image>*/}

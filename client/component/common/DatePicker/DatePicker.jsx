@@ -151,11 +151,11 @@ class DatePicker extends Component {
                     className={`datepicker`}>
                     {showHeader && <div className="datepicker-header">{customHeader}</div>}
                     <div className="datepicker-content">
-                        <TextPickerItem
-                            key={0}
-                            value={['昨天', '今天']}
-                            onSelect={this.daySelect.bind(this)}
-                        />
+                        {/*<TextPickerItem*/}
+                            {/*key={0}*/}
+                            {/*value={['昨天', '今天']}*/}
+                            {/*onSelect={this.daySelect.bind(this)}*/}
+                        {/*/>*/}
                         {dateFormat.map((format, index) => (
                             <DatePickerItem
                                 key={index + 1}
