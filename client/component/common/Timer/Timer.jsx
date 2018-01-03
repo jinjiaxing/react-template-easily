@@ -5,7 +5,7 @@
  * @editor yangchao
  * @desc 一个计数器，支持正序，逆序计数，可接受秒数或者hh:mm:ss类型的数据，可配置时间超过24小时出现天数，
  * 到达截至时间会触发回调函数,其中id和initvalue为必传项
- * @update 2017/12/20
+ * @update 2017/01/03
  */
 
 import React,{Component} from 'react';
@@ -16,7 +16,7 @@ import './_timer.scss';
 import Toast from "../Toast/Toast";
 import ReactDOM from "react-dom";
 
-let deadLine, hasError = false, remainingSeconds, timeObj = {}
+let deadLine, hasError = false, timeObj = {}, times = {}
 
 class Timer extends Component {
 
@@ -25,8 +25,6 @@ class Timer extends Component {
         super(props);
         this.tick = this.tick.bind(this);
         this.state = {
-            // 一共有多少秒
-            remainingSeconds: 0,
             // 时间是否超过一天
             day: 0,
             // 分隔符
@@ -61,12 +59,11 @@ class Timer extends Component {
         type: ':',
         timeup: 0,
         newDay: false
-
     };
 
     componentWillReceiveProps(nextProps){
         if(this.props.initValue !== nextProps.initValue){
-            remainingSeconds = this.props.initValue
+            timeObj[this.props.id] = this.props.initValue
         }
     }
 
@@ -79,6 +76,11 @@ class Timer extends Component {
     }
 
     componentWillMount(){
+        if(!this.props.id){
+            hasError = true
+            Toast.toastInstance('请传入id', 1500);
+            return
+        }
         let types = []
 
         if(this.props.type == 'time'){
@@ -94,8 +96,9 @@ class Timer extends Component {
         }
 
         this.setState({types: types});
+
         if(typeof this.props.initValue === 'number'){
-            remainingSeconds = this.props.initValue
+            timeObj[this.props.id] = this.props.initValue
         }else{
             hasError = true
             Toast.toastInstance('时间格式错误', 1500);
@@ -110,56 +113,56 @@ class Timer extends Component {
             return
         }
 
-        const total_seconds = remainingSeconds;
+        const total_seconds = timeObj[this.props.id] ;
         const seconds = total_seconds%60;
         const minutes = Math.floor(total_seconds/60)%60;
         const hours = Math.floor(Math.floor(total_seconds/60)/60);
 
-        timeObj = {
-            hours: this.formatTime(hours),
-            minutes: this.formatTime(minutes),
-            seconds: this.formatTime(seconds)
-        }
+        timeObj['hours_' + this.props.id] = this.formatTime(hours)
+        timeObj['minutes_' + this.props.id] = this.formatTime(minutes)
+        timeObj['seconds_' + this.props.id] = this.formatTime(seconds)
 
     }
 
     tick() {
         if(this.props.order == 'asce'){
-            remainingSeconds++
+            timeObj[this.props.id] ++
             if(this.props.newDay){
                 // 86400 = 60 * 60 *24
-                const days = parseInt(remainingSeconds / 86400)
+                const days = parseInt(timeObj[this.props.id]  / 86400)
                 this.setState({day: this.formatTime(days)});
             }
 
         }else if(this.props.order == 'desc'){
-            remainingSeconds--
+            timeObj[this.props.id] --
         }
 
-        if(remainingSeconds === deadLine){
+        if(timeObj[this.props.id]  === deadLine){
             this.props.timeUpHandler && this.props.timeUpHandler();
             clearInterval(this.timer);
             return;
         }
 
-        const total_seconds = remainingSeconds;
+        const total_seconds = timeObj[this.props.id] ;
         const seconds = total_seconds % 60;
         const minutes = Math.floor(total_seconds / 60) % 60;
         const hours = Math.floor(Math.floor(total_seconds / 60) / 60);
-        timeObj = {
+
+        times = {
             hours: this.formatTime(hours),
             minutes: this.formatTime(minutes),
             seconds: this.formatTime(seconds)
         }
 
-        ReactDOM.findDOMNode(this.refs.hour).innerText = this.formatTime(hours)
-        ReactDOM.findDOMNode(this.refs.minute).innerText = this.formatTime(minutes)
-        ReactDOM.findDOMNode(this.refs.second).innerText = this.formatTime(seconds)
-        localStorage.setItem('timeObj' + this.props.id, JSON.stringify(timeObj));
+        ReactDOM.findDOMNode(this.refs['hour_'+this.props.id]).innerText = this.formatTime(hours)
+        ReactDOM.findDOMNode(this.refs['minute_'+this.props.id]).innerText = this.formatTime(minutes)
+        ReactDOM.findDOMNode(this.refs['second_'+this.props.id]).innerText = this.formatTime(seconds)
+        localStorage.setItem('timeObj_' + this.props.id, JSON.stringify(times));
 
     }
 
     componentDidMount() {
+        console.log(this.refs)
         if(!hasError)
             this.timer = setInterval(this.tick, 1000);
 
@@ -172,12 +175,6 @@ class Timer extends Component {
 
     formatTime(time) {
         return time < 10 ? '0' + time : time;
-    }
-
-    getTime() {
-
-        localStorage.setItem('timeObj' + this.props.id, JSON.stringify(timeObj));
-        return timeObj
     }
 
     render() {
@@ -193,22 +190,20 @@ class Timer extends Component {
                     </span>
 
                     : null}
-                <span className="frc_hour" ref="hour">
-                    {timeObj.hours}
+                <span className="frc_hour" ref={"hour_" + this.props.id }>
+                    {timeObj['hours_'+this.props.id]}
                 </span>
                 <span className="frc_colon">{this.state.types[1]}</span>
-                <span className="frc_minute" ref="minute">
-                    {timeObj.minutes}
+                <span className="frc_minute" ref={"minute_" + this.props.id}>
+                    {timeObj['minutes_' + this.props.id]}
 
                 </span>
                 <span className="frc_colon">{this.state.types[2]}</span>
-                <span className="frc_second" ref="second">
-                    {timeObj.seconds}
+                <span className="frc_second" ref={"second_" + this.props.id }>
+                    {timeObj['seconds_' + this.props.id]}
                 </span>
                 {this.props.type === 'time' ?
                     <span className="frc_colon">{this.state.types[3]}</span> :null}
-
-
             </div>
         )
     }

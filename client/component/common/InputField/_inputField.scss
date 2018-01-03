@@ -7,6 +7,29 @@ $clear_icon_fontSize: .4rem;
   position: relative;
   height: 100%;
 
+  .border_before{
+
+    border-bottom: 1px solid rgb(224, 224, 224);
+    bottom: -1.2rem;
+    box-sizing: content-box;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .border_after{
+
+    border-bottom: 2px solid #3385ff;
+    bottom: -1.2rem;
+    box-sizing: content-box;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  }
+
+
   .input_field {
     position: absolute;
     margin: auto;
@@ -14,8 +37,7 @@ $clear_icon_fontSize: .4rem;
     bottom: 0;
     height: $input_field_height;
     line-height: $input_field_height;
-    border-top: 1px solid $input_border_color;
-    border-bottom: 1px solid $input_border_color;
+
     width: 100%;
     &::-webkit-input-placeholder {
       color: #cccccc;
@@ -33,7 +55,6 @@ $clear_icon_fontSize: .4rem;
     bottom: 0;
   }
   .input_field_clear {
-    display: none;
     background-image:url("./image/clear.png");
     position: absolute;
     right: .5rem;

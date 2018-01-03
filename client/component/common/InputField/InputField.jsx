@@ -1,17 +1,20 @@
 /**
  * Created by zengruofan on 16/6/12.
  * Edit by jinjiaxing on 16/6/30.
+ * Edit by yangchao on 18/1/3
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import './_inputField.scss';
 
+let transform
 class InputField extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             showIcon: false,
-            value: ''
+            value: '',
+            transform:{}
         }
     }
 
@@ -26,13 +29,14 @@ class InputField extends React.Component {
         onBlur: PropTypes.func,
         formatText: PropTypes.func,
         maxLength: PropTypes.number,
-        defaultValue: PropTypes.string
+        defaultValue: PropTypes.string,
+        clearCallback: PropTypes.func
     }
 
     static defaultProps = {
         type: 'text',
         // 文字内容
-        placeholder: '请输入',
+        placeholder: '请输入内容',
         // 自定义style
         className: '',
         // 图标显示
@@ -47,10 +51,15 @@ class InputField extends React.Component {
         onChangeHandler: ()=> {
         },
         // 格式化文本方法
-        formatText: ()=> {
+        formatText: (item)=> {
+            return item
         },
         // 焦点移开事件
         onBlur: ()=> {
+        },
+        // 清空输入框的回调
+        clearCallback: ()=>{
+
         }
     }
 
@@ -61,7 +70,7 @@ class InputField extends React.Component {
     textChange(e) {
         let value = e.target.value;
 
-        this.props.onChangeHandler(value);
+        this.props.onChangeHandler && this.props.onChangeHandler(value);
 
         if (this.props.formatText) {
             value = this.props.formatText(value)
@@ -79,7 +88,7 @@ class InputField extends React.Component {
         // 这里的this为InputField对象
         this.refs.inputField.focus();
         this.refs.inputField.value = '';
-        this.setState({value: ''});
+        this.setState({value: '', showIcon: false});
         if (this.props.clearCallback) {
             this.props.clearCallback();
         }
@@ -91,6 +100,29 @@ class InputField extends React.Component {
                 value: this.props.defaultValue
             });
         }
+    }
+
+    inputOnFocus(){
+        transform = {
+            'transform': 'scaleX(1)'
+        }
+
+        this.setState({
+            transform:transform
+        })
+
+    }
+
+    inputOnBlur(){
+        transform = {
+            'transform': 'scaleX(0)'
+        }
+
+        this.setState({
+            transform:transform
+        },()=>{
+            this.props.onBlur && this.props.onBlur()
+        })
     }
     
     render() {
@@ -124,14 +156,18 @@ class InputField extends React.Component {
                 <input className={`input_field ${this.props.className}`}
                        type={this.props.type}
                        placeholder={this.props.placeholder}
-                       autoFocus={autoFocus}
                        ref="inputField"
                        onChange={this.textChange.bind(this)}
                        value={this.state.value}
-                       onBlur={this.props.onBlur.bind(this)}
+                       onFocus={this.inputOnFocus.bind(this)}
+                       onBlur={this.inputOnBlur.bind(this)}
                        maxLength={this.props.maxLength}
                        disabled={this.props.isDisable}
                 />
+                <div>
+                    <hr className="border_before"></hr>
+                    <hr className="border_after" style={this.state.transform}></hr>
+                </div>
                 {clearContain}
             </div>
         );
