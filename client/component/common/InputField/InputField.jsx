@@ -165,8 +165,8 @@ class InputField extends React.Component {
                        disabled={this.props.isDisable}
                 />
                 <div>
-                    <hr aria-hidden="true" className="border_before"></hr>
-                    <hr aria-hidden="true" className="border_after" style={this.state.transform}></hr>
+                    <hr className="border_before"></hr>
+                    <hr className="border_after" style={this.state.transform}></hr>
                 </div>
                 {clearContain}
             </div>
