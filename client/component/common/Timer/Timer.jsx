@@ -16,7 +16,7 @@ import './_timer.scss';
 import Toast from "../Toast/Toast";
 import ReactDOM from "react-dom";
 
-let deadLine, hasError = false, timeObj = {}, times = {}
+let hasError = false, timeObj = {}, times = {}
 
 class Timer extends Component {
 
@@ -106,7 +106,7 @@ class Timer extends Component {
         }
 
         if(typeof this.props.timeup === 'number'){
-            deadLine = this.props.timeup
+            timeObj['deadLine' + this.props.id] = this.props.timeup
         }else{
             hasError = true
             Toast.toastInstance('截至时间格式错误', 1500);
@@ -137,7 +137,7 @@ class Timer extends Component {
             timeObj[this.props.id] --
         }
 
-        if(timeObj[this.props.id]  === deadLine){
+        if(timeObj[this.props.id]  === timeObj['deadLine' + this.props.id]){
             this.props.timeUpHandler && this.props.timeUpHandler();
             clearInterval(this.timer);
             return;
