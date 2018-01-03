@@ -14,7 +14,7 @@ className | string | |附加类名|
 style | string | Simple_anim_bg | 开关的动画方式 |
 text | string | ' ' |文本内容| 
 handler | func |  | 状态改变回调函数|
-defaultChecked | bool | false |初始是否选中|
+selected | bool | false |初始是否选中|
 id | string | one | 开关的唯一标识
 classText | string | | 为开关文字写特定样式
 position | string | | 文字在开关左边还是右边

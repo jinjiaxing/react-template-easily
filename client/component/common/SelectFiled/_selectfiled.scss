@@ -133,7 +133,7 @@ div.frc_skin_border {
 
 .frc_skin_border > span {
   border-bottom: 1px solid rgb(232, 232, 232);
-  font-size: .7rem;
+  font-size: .8rem;
   color: rgba(0, 0, 0, 0.87);;
   -webkit-transition: background 0.2s, border-color 0.2s;
   transition: background 0.2s, border-color 0.2s;
@@ -142,7 +142,7 @@ div.frc_skin_border {
 .frc_select_disable > span{
   border: 1px solid #fff;
   background: #fff;
-  font-size: .7rem;
+  font-size: .8rem;
   color: #ccc;
   border-radius: 100px;
   -webkit-transition: background 0.2s, border-color 0.2s;
@@ -176,7 +176,7 @@ div.frc_skin_border {
 
 .frc_skin_border .frc_options {
   color: #000;
-  font-size: 0.75em;
+  font-size: 0.7em;
   opacity: 0;
   -webkit-transition: opacity 0.2s, visibility 0s 0.2s;
   transition: opacity 0.2s, visibility 0s 0.2s;
@@ -199,7 +199,7 @@ div.frc_skin_border {
 .frc_skin_border ul span {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  font-size: .8rem;
+  font-size: .7rem;
 }
 
 .frc_skin_border .frc_options li span:hover,

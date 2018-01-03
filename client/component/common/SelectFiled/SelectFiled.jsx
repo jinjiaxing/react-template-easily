@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 import './_selectfiled.scss';
 import PropTypes from 'prop-types';
 
-class Picker extends React.Component {
+class SelectFiled extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,14 +26,17 @@ class Picker extends React.Component {
         // 选中某一项的回调函数
         handler: PropTypes.func,
         // 默认的文本内容
-        placeHolder: PropTypes.string
+        placeHolder: PropTypes.string,
+        // 自定义选中状态class
+        optionActive: PropTypes.string
 
     }
 
     static defaultProps = {
         disable: false,
         data: ['Option 1','Option 2','Option3'],
-        placeHolder: 'Choose your option'
+        placeHolder: 'Choose your option',
+        optionActive: 'active'
     }
 
     onClickPlaceholder(){
@@ -61,7 +64,7 @@ class Picker extends React.Component {
         let self = this;
         let optionData = [];
         this.props.data.forEach((item, idx) => {
-                optionData.push(<li key={`option ${idx}`} className={self.state.current == idx ? 'active' : ''} ref="selectOption" data-option data-value={idx} onClick = {function() {
+                optionData.push(<li key={`option ${idx}`} className={self.state.current == idx ? this.props.optionActive : ''} ref="selectOption" data-option data-value={idx} onClick = {function() {
                     self.state.current = idx;
                     self.onClickPlaceholder();
                 }}><span>{self.props.data[idx]}</span></li>);
@@ -81,4 +84,4 @@ class Picker extends React.Component {
     }
 }
 
-export default Picker;
+export default SelectFiled;

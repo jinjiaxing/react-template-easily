@@ -11,6 +11,12 @@
     color: #000;
     font-size: 1rem;
   }
+  .frc_day{
+    width:100%;
+    .frc_hour{
+      width: 65%;
+    }
+  }
 
   .frc_hour, .frc_minute, .frc_second {
     display: inline-block;
