@@ -16,7 +16,6 @@ body, #container {
   font-family: 'PingFangSC-Regular';
   font-size: 0.9em;
   color: #333333;
-  background-color: #F2F4F5;
 }
 
 html,body {
@@ -72,6 +71,12 @@ div[data-reactroot] {
 
 }
 .align-center {
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 

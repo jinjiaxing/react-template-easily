@@ -1,6 +1,10 @@
 /**
- * Created by danyu on 4/5/16.
- *
+ * @file Tab.jsx
+ * @desc Tab Component
+ * @author danyu
+ * @data 2016/6/12
+ * @editer jinjiaxing
+ * @update 2017/12/27
  * Examples:
  * <Tab>
  *     <TabPane tabTitle='tabTitle1' tabKey='1' defaultSelected>{tabContent1}</TabPane>
@@ -56,8 +60,11 @@ class Tab extends Component {
      * @param tabKey
      */
     onTabChange(tabKey) {
+        console.log('onTabChange');
         this.setState({activeTabKey: tabKey});
-        this.props.onTabChange(tabKey);
+        if(this.props.onTabChange) {
+            this.props.onTabChange(tabKey);
+        }
     }
 
     /**
@@ -70,9 +77,16 @@ class Tab extends Component {
     }
 
     render() {
+        let selectedKey;
+        const activeTabKey = this.state.activeTabKey;
+        if(activeTabKey) {
+            selectedKey = activeTabKey;
+        } else {
+            selectedKey = this.getDefaultKey();
+        }
 
-        const selectedKey = this.getDefaultKey();
-        const {children, allDisabled, className,unClick} = this.props;
+
+        const {children, allDisabled, className,onClick} = this.props;
         let TabNav = (
             <div className='frc_tab-nav clearfix'>
                 {
@@ -97,7 +111,7 @@ class Tab extends Component {
                                 let props = {
                                     key: idx,
                                     className: `frc_tab-item ${selectedName} ${disabledName}`,
-                                    onClick: unClick?'':this.onTabChange.bind(this, tabKey),
+                                    onClick: onClick?'':this.onTabChange.bind(this, tabKey),
                                     disabled: disabled
                                 };
 

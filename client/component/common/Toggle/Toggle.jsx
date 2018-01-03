@@ -50,7 +50,7 @@ class Toggle extends React.Component {
         position: 'left',
         distance: '10px',
         id: 'one',
-        selected: false
+        selected:false
     }
 
     switch(){

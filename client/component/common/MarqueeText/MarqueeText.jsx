@@ -44,7 +44,6 @@ class MarqueeText extends Component {
         domNode.style[key] = value
     }
 
-    // 滚动显示头条列表
     carouselVertical(period, isInitial) {
         const domNode = this.topNews;
         if (domNode) {

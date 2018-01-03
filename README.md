@@ -10,7 +10,7 @@ react-template-easily
 
 ### Demo:
 [Demo展示（请使用chrome模拟移动端方式查看，或者使用手机查看）](https://jinjiaxing.github.io/react-template-easily/demo/component/index.html#/test)   
-![截图](http://wx4.sinaimg.cn/mw690/dc462c65ly1fmncfld4ydg20a50iijxz.gif)
+![截图](http://wx4.sinaimg.cn/mw690/dc462c65ly1fn2iivrwysg20ab0i5qj0.gif)
 
 ## 技术栈 ##
 * _react:16_
@@ -89,6 +89,7 @@ react-template-easily
 	2017/10/22 新增Drawer组件
 	2017/12/01 修改Toast组件默认样式
 	2017/12/02 修改Toast组件结构
+	2018/01/02 更新全部组件风格
 
 
 ## 开发人员 ##
