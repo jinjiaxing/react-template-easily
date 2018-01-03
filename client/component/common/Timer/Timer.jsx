@@ -14,8 +14,9 @@ import PropTypes from 'prop-types';
 // style
 import './_timer.scss';
 import Toast from "../Toast/Toast";
+import ReactDOM from "react-dom";
 
-let totalSecond, deadLine, hasError = false
+let deadLine, hasError = false, remainingSeconds, timeObj = {}
 
 class Timer extends Component {
 
@@ -64,8 +65,17 @@ class Timer extends Component {
     };
 
     componentWillReceiveProps(nextProps){
-        totalSecond = this.props.initValue
-        this.setState({remainingSeconds: totalSecond});
+        if(this.props.initValue !== nextProps.initValue){
+            remainingSeconds = this.props.initValue
+        }
+    }
+
+    shouldComponentUpdate(nextProps,nextState){
+        if(this.props.initValue !== nextProps.initValue || this.state.day !== nextState.day){
+            return true
+        }else{
+            return false
+        }
     }
 
     componentWillMount(){
@@ -85,9 +95,7 @@ class Timer extends Component {
 
         this.setState({types: types});
         if(typeof this.props.initValue === 'number'){
-
-            totalSecond = this.props.initValue
-            this.setState({remainingSeconds: totalSecond});
+            remainingSeconds = this.props.initValue
         }else{
             hasError = true
             Toast.toastInstance('时间格式错误', 1500);
@@ -102,37 +110,59 @@ class Timer extends Component {
             return
         }
 
+        const total_seconds = remainingSeconds;
+        const seconds = total_seconds%60;
+        const minutes = Math.floor(total_seconds/60)%60;
+        const hours = Math.floor(Math.floor(total_seconds/60)/60);
+
+        timeObj = {
+            hours: this.formatTime(hours),
+            minutes: this.formatTime(minutes),
+            seconds: this.formatTime(seconds)
+        }
 
     }
 
     tick() {
         if(this.props.order == 'asce'){
-            const remain = this.state.remainingSeconds + 1;
-            this.setState({remainingSeconds: remain});
+            remainingSeconds++
             if(this.props.newDay){
                 // 86400 = 60 * 60 *24
-                const days = parseInt(this.state.remainingSeconds / 86400)
+                const days = parseInt(remainingSeconds / 86400)
                 this.setState({day: this.formatTime(days)});
             }
 
         }else if(this.props.order == 'desc'){
-
-            const remain = this.state.remainingSeconds -1;
-            this.setState({remainingSeconds: remain});
-
+            remainingSeconds--
         }
 
-        if(this.state.remainingSeconds === deadLine){
+        if(remainingSeconds === deadLine){
             this.props.timeUpHandler && this.props.timeUpHandler();
             clearInterval(this.timer);
             return;
         }
+
+        const total_seconds = remainingSeconds;
+        const seconds = total_seconds % 60;
+        const minutes = Math.floor(total_seconds / 60) % 60;
+        const hours = Math.floor(Math.floor(total_seconds / 60) / 60);
+        timeObj = {
+            hours: this.formatTime(hours),
+            minutes: this.formatTime(minutes),
+            seconds: this.formatTime(seconds)
+        }
+
+        ReactDOM.findDOMNode(this.refs.hour).innerText = this.formatTime(hours)
+        ReactDOM.findDOMNode(this.refs.minute).innerText = this.formatTime(minutes)
+        ReactDOM.findDOMNode(this.refs.second).innerText = this.formatTime(seconds)
+        localStorage.setItem('timeObj' + this.props.id, JSON.stringify(timeObj));
 
     }
 
     componentDidMount() {
         if(!hasError)
             this.timer = setInterval(this.tick, 1000);
+
     }
 
     componentWillUnmount() {
@@ -146,26 +176,16 @@ class Timer extends Component {
 
     getTime() {
 
-        const total_seconds = this.state.remainingSeconds;
-        const seconds = total_seconds%60;
-        const minutes = Math.floor(total_seconds/60)%60;
-        const hours = Math.floor(Math.floor(total_seconds/60)/60);
-        let timeObj = {
-            hours: this.formatTime(hours),
-            minutes: this.formatTime(minutes),
-            seconds: this.formatTime(seconds)
-        }
         localStorage.setItem('timeObj' + this.props.id, JSON.stringify(timeObj));
         return timeObj
     }
 
     render() {
-        const timeData = this.getTime();
 
         return (
             <div className={"frc_timer" + this.props.className}>
                 {this.state.day !== 0 ?
-                    <span>
+                    <span className="frc_day">
                         <span className="frc_hour">
                             {this.state.day}
                         </span>
@@ -173,16 +193,17 @@ class Timer extends Component {
                     </span>
 
                     : null}
-                <span className="frc_hour">
-                    {timeData.hours}
+                <span className="frc_hour" ref="hour">
+                    {timeObj.hours}
                 </span>
                 <span className="frc_colon">{this.state.types[1]}</span>
-                <span className="frc_minute">
-                    {timeData.minutes}
+                <span className="frc_minute" ref="minute">
+                    {timeObj.minutes}
+
                 </span>
                 <span className="frc_colon">{this.state.types[2]}</span>
-                <span className="frc_second">
-                    {timeData.seconds}
+                <span className="frc_second" ref="second">
+                    {timeObj.seconds}
                 </span>
                 {this.props.type === 'time' ?
                     <span className="frc_colon">{this.state.types[3]}</span> :null}

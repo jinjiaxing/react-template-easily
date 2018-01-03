@@ -14,6 +14,7 @@ import './_toggle.scss';
 class Toggle extends React.Component {
     constructor(props) {
         super(props);
+
     }
 
     static propTypes = {
@@ -53,6 +54,7 @@ class Toggle extends React.Component {
     }
 
     switch(){
+
         ReactDOM.findDOMNode(this.refs['toggle_'+this.props.id]).checked = !ReactDOM.findDOMNode(this.refs['toggle_'+this.props.id]).checked
     }
 
