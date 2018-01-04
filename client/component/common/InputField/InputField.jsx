@@ -36,7 +36,7 @@ class InputField extends React.Component {
     static defaultProps = {
         type: 'text',
         // 文字内容
-        placeholder: '请输入内容',
+        placeholder: 'please input',
         // 自定义style
         className: '',
         // 图标显示

@@ -28,6 +28,7 @@ import Collapse from '../../component/common/Collapse/Collapse.jsx';
 import ImageSlider from '../../component/common/ImageSlider/ImageSlider.jsx'
 import Timer from '../../component/common/Timer/Timer.jsx';
 import Drawer from '../../component/common/Drawer/Drawer.jsx';
+import InputField from '../../component/common/InputField/InputField.jsx';
 import DatePicker from '../../component/common/DatePicker/DatePicker.jsx';
 import Dialog from '../../component/common/Dialog/Dialog.jsx';
 /**other**/
@@ -170,9 +171,9 @@ class PageTest extends React.Component {
                     </Panel>
 
                     <Panel title='Timer：'>
-                        <Timer initValue={this.timerAsce}/>
+                        <Timer id={'timer1'} order='asce' type=':' initValue={this.timerAsce}/>
                         <div style={{marginTop: '1rem'}}>
-                            <Timer order='desc' type=':' initValue={this.timerDesc}/>
+                            <Timer id={'timer2'} order='desc' type=':' initValue={this.timerDesc}/>
                         </div>
                     </Panel>
 
@@ -211,6 +212,10 @@ class PageTest extends React.Component {
                             }, 3000);
                         }}/>
                         <p style={{fontSize: '14px', marginTop: '10px'}}>wait for 3 seconds</p>
+                    </Panel>
+
+                    <Panel title='InputField：'>
+                        <InputField/>
                     </Panel>
 
                     <Panel title='Drawer：'>

@@ -1,4 +1,4 @@
-/**
+    /**
  * @file pageHomeAction.jsx
  * @desc 首页action
  * @author jinjiaxing

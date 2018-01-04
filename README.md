@@ -2,7 +2,7 @@ react-template-easily
 ===
 
 
-### 描述：
+### Desc：
 >**react-template-easily** 是一套以react技术搭建的项目模板，适用于移动端*H5*, *webapp*和*hybirdApp*开发。其中包含常用20+常用组件，精细计算的rem，以及诸多项目的实践。
 
 ### URL:
@@ -74,7 +74,7 @@ react-template-easily
 	
 	
 
-## 开始使用 ##
+## install & run ##
 
 	git clone https://github.com/jinjiaxing/react-template-easily.git
 	npm install
@@ -82,20 +82,21 @@ react-template-easily
 	浏览器访问：0.0.0.0:8080
 	
 
-## 发布 ##
+## release ##
 	npm run release 或 sh ./build.sh
 	
-## 更新 ##
+## update ##
 	2017/10/22 新增Drawer组件
 	2017/12/01 修改Toast组件默认样式
 	2017/12/02 修改Toast组件结构
 	2018/01/02 更新全部组件风格
+	2018/01/04 添加InputField组件
 
 
-## 开发人员 ##
-* 姓名:金家兴(jinjiaxing)
-* 公司:百度(baidu)
-* 邮箱:34568305@qq.com
+## developer ##
+* name: jinjiaxing
+* company: baidu
+* mail: 34568305@qq.com
 
 
 
