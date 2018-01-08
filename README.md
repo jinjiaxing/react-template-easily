@@ -83,7 +83,12 @@ react-template-easily
 	
 
 ## release ##
-	npm run release 或 sh ./build.sh
+	npm run release 或 sh ./build.sh 
+	
+## preact dev&release ## 
+	npm run dev:preact
+	npm run release:preact
+[如何切换react与preact，请点击此处](https://github.com/jinjiaxing/react-template-easily/issues/10) 
 	
 ## update ##
 	2017/10/22 新增Drawer组件
@@ -91,6 +96,7 @@ react-template-easily
 	2017/12/02 修改Toast组件结构
 	2018/01/02 更新全部组件风格
 	2018/01/04 添加InputField组件
+	2018/01/08 添加preact版本，支持一键切换preact和react
 
 
 ## developer ##
