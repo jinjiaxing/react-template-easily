@@ -9,7 +9,21 @@ react-template-easily
 [https://github.com/jinjiaxing/react-template-easily](https://github.com/jinjiaxing/react-template-easily  )
 
 ### Demo:
-[Demo展示（请使用chrome模拟移动端方式查看，或者使用手机查看）](https://jinjiaxing.github.io/react-template-easily/demo/component/index.html#/test)   
+[React Demo展示（请使用chrome模拟移动端方式查看，或者使用手机查看）](https://jinjiaxing.github.io/react-template-easily/demo/component/index.html#/test) 
+
+[Preact Demo](https://jinjiaxing.github.io/react-template-easily/demo/preact/index.html#/test)    
+大家可以看到Preact和React的Demo，都完美运行，目前并无差别 
+
+- **react runtime size**
+![react size](http://wx3.sinaimg.cn/mw690/dc462c65ly1fncnyzb1fmj21ac07idhs.jpg) 
+
+- **preact runtime size**
+![preact_size](http://wx4.sinaimg.cn/mw690/dc462c65ly1fncnyyu50tj21ag08040k.jpg) 
+ 
+**大家可以看到，同样的结构在压缩后（gizip），react的大小是preact包的2.68倍，差距在100kb**
+
+
+
 ![截图](http://wx4.sinaimg.cn/mw690/dc462c65ly1fn2iivrwysg20ab0i5qj0.gif)
 
 ## 技术栈 ##
