@@ -3,7 +3,7 @@
  * @desc 通用按钮，内容仅为文字
  * @author jinjiaxing
  * @data 2016/6/12
- * @update 2017/12/26
+ * @update 2018/03/16
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
@@ -25,7 +25,8 @@ class Button extends Component {
         isDisable: PropTypes.bool,
         children: PropTypes.element,
         width: PropTypes.string,
-        height: PropTypes.string
+        height: PropTypes.string,
+        fontSize: PropTypes.string
     };
 
     static defaultProps = {
@@ -42,6 +43,7 @@ class Button extends Component {
         isDisable: false,
         width: '',
         height: '',
+        fontSize: '0.8rem',
         onTouchTap: () => {
 
         }
@@ -56,7 +58,8 @@ class Button extends Component {
             isDisable,
             className,
             height,
-            width
+            width,
+            fontSize
         } = this.props;
 
         let classText = 'frc_button';
@@ -85,6 +88,10 @@ class Button extends Component {
 
         if (height) {
             styleProps['height'] = height;
+        }
+
+        if (fontSize) {
+            styleProps['fontSize'] = fontSize;
         }
 
         return (
