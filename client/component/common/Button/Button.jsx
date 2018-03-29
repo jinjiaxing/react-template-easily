@@ -3,7 +3,7 @@
  * @desc 通用按钮，内容仅为文字
  * @author jinjiaxing
  * @data 2016/6/12
- * @update 2018/03/16
+ * @update 2018/03/29
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
@@ -26,7 +26,9 @@ class Button extends Component {
         children: PropTypes.element,
         width: PropTypes.string,
         height: PropTypes.string,
-        fontSize: PropTypes.string
+        fontSize: PropTypes.string,
+        rightIcon: PropTypes.string,
+        rightIconClassName: PropTypes.string
     };
 
     static defaultProps = {
@@ -46,7 +48,11 @@ class Button extends Component {
         fontSize: '0.8rem',
         onTouchTap: () => {
 
-        }
+        },
+        // 文字右侧图标
+        rightIcon:'',
+        // 文字右侧按钮样式
+        rightIconClassName:''
     };
 
     componentDidMount() {
@@ -59,7 +65,9 @@ class Button extends Component {
             className,
             height,
             width,
-            fontSize
+            fontSize,
+            rightIcon,
+            rightIconClassName
         } = this.props;
 
         let classText = 'frc_button';
@@ -94,6 +102,15 @@ class Button extends Component {
             styleProps['fontSize'] = fontSize;
         }
 
+        let rightIconCom = "";
+        let rightIconClass= "frc_btn_right_icon";
+        if (rightIconClassName) {
+            rightIconClass = rightIconClassName;
+        }
+        if (rightIcon) {
+            rightIconCom = <img className={rightIconClass} src={rightIcon} />
+        }
+
         return (
             <button disabled={this.props.isDisable}
                     ref={(ref) => {
@@ -111,6 +128,7 @@ class Button extends Component {
                     }}
                     style={styleProps}>
                 <span>{this.props.text}</span>
+                {rightIconCom}
             </button>
         );
     }
