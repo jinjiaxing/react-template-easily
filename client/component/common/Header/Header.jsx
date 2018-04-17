@@ -41,7 +41,7 @@ class Header extends Component {
     };
 
     goBack() {
-        this.context.router.goBack();
+        this.context.router.history.goBack();
     }
 
     render() {

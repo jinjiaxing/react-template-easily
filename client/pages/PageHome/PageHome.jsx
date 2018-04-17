@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
 /**component**/
-import MarqueeText from '../../component/common/MarqueeText/MarqueeText.jsx';
+import Button from '../../component/common/Button/Button.jsx';
 
 /**resources**/
 import './_pageHome.scss';
@@ -54,11 +54,15 @@ class PageHome extends Component {
     componentWillReceiveProps(nextProps) {
     }
 
+    btnHandler() {
+        this.context.router.history.push(`test`);
+    }
+
     render() {
         return (
             <div id='pagehome'>
-                jinjiaxing's react cli
-                <MarqueeText marqueeData={['aaa','bbb','ccc']}/>
+                <h1>react-template-easily!</h1>
+                <Button text="View Demo" onTouchTap={this.btnHandler.bind(this)}/>
             </div>
         );
     }
