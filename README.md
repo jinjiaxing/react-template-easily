@@ -111,6 +111,7 @@ react-template-easily
 	2018/01/02 更新全部组件风格
 	2018/01/04 添加InputField组件
 	2018/01/08 添加preact版本，支持一键切换preact和react
+	2018/04/17 更新Header组件back按钮回退问题
 
 
 ## developer ##
