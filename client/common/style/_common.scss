@@ -1,8 +1,5 @@
 @import "reset";
-
-$btnPress_bgColor:#c3362a;
-$btnPress_color:rgba(255, 255, 255, 0.4);
-
+@import "variable";
 
 html {
   height: 100%;
@@ -13,73 +10,54 @@ html {
 body, #container {
   height: 100%;
   width: 100%;
-  font-family: 'PingFangSC-Regular';
   font-size: 0.9em;
   color: #333333;
 }
 
-html,body {
+html, body {
   height: 100%;
   -webkit-overflow-scrolling: touch;
 
 }
 
-::-webkit-scrollbar {display:none}
-
-.text-ellipsis {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+::-webkit-scrollbar {
+  display: none;
 }
 
-div[data-reactroot] {
-  width:100%;
-  height:100%;
+.lineOption {
+  content: '';
+  position: absolute;
+  background-color: $borderColor;
+  margin: auto;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-.transitionHeight {
-  height: 100%;
-  width: 100%;
+@mixin horizontalLine($top, $bottom, $width) {
+  @extend .lineOption;
+  transform: scaleY(.5);
+  -webkit-transform: scaleY(.5);
+  height: 1px;
+  left: 0;
+  right: 0;
+  top: $top;
+  bottom: $bottom;
+  width: $width;
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
 }
 
-
-.clearfix {
-  *zoom:1;
-}
-.clearfix:after {
-  display: block;
-  height: 0;
-  content: ".";
-  visibility: hidden;
-  clear: both
-}
-
-.dis-box {
-  display: flex;
-}
-.box-horizontal {
-  flex-direction: row;
-}
-.box-vertical {
-  flex-direction: column;
-}
-.flex {
-  flex:1
-}
-.pack-center {
-  justify-content: center;
-
-}
-.align-center {
-  align-items: center;
+@mixin verticalLine($left, $right, $height) {
+  @extend .lineOption;
+  width: 1px;
+  transform: scaleX(.5);
+  -webkit-transform: scaleX(.5);
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  top: 0;
+  bottom: 0;
+  left: $left;
+  right: $right;
+  height: $height;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.mglr {
-  margin: 0 0.75rem;
-}
