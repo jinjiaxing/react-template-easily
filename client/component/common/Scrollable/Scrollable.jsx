@@ -29,12 +29,19 @@ class Scrollable extends Component {
         this.startY = 0;
         // 当前滑动所在位置
         this.scrollY = this.props.initScrollY || 0;
-        this.scrollY = parseFloat(this.scrollY.replace('px',''));
+        this.scrollY = parseFloat(this.scrollY.replace('px', ''));
         // 容器是否可以滑动
         this.canScroll = this.props.canScroll || true;
         // 滑动方向 =up 向上 =down 向下
         this.direction = '';
+        // 滑动动画
+        this.translateCss = 'transform 0.3s ease-out';
+
+        this.state = {
+             translateCss:''
+        };
     }
+
 
     static propTypes = {};
 
@@ -67,7 +74,9 @@ class Scrollable extends Component {
     touchStartHandler(e) {
         console.log('Scrollable touchstart');
 
-        if(!this.canScroll) return;
+        this.setState({translateCss:''});
+        // 将开始位置记录
+        this.startY = e.changedTouches[0].clientY;
 
         // 如果存在自定义事件
         let {touchstart} = this.props;
@@ -75,9 +84,6 @@ class Scrollable extends Component {
             touchstart();
             return;
         }
-
-        // 将开始位置记录
-        this.startY = e.changedTouches[0].clientY;
     }
 
     /**
@@ -86,14 +92,6 @@ class Scrollable extends Component {
      */
     touchMoveHandler(e) {
         console.log('Scrollable touchmove');
-
-        if(!this.canScroll) return;
-
-        let {touchmove} = this.props;
-        if (typeof touchmove === 'function') {
-            touchmove();
-            return;
-        }
 
         // 开始位置
         let beginScrollY = this.startY;
@@ -106,13 +104,29 @@ class Scrollable extends Component {
             this.direction = 'down';
         }
 
-        //this.scrollY = this.scrollY - scrollDistance;
-        this.scrollTo(this.scrollY - scrollDistance);
+        let scrollAfterY = this.scrollY - scrollDistance;
 
-        console.log(`scrollDistance=${scrollDistance} direction=${this.direction} 当前scrollY=${this.scrollY}`);
+        console.log('scrollAfterY=',scrollAfterY);
 
+        // 滑动到最上方 则进行继续滑动
+        if(scrollAfterY <=0) {
+            this.canScroll = false;
+            this.scrollTo(0);
+            this.scrollY = 0;
+        }
+        // 滑动后的位置
+        else {
+            this.canScroll = true;
+            this.scrollTo(scrollAfterY);
+        }
 
+        let {touchmove} = this.props;
+        if (typeof touchmove === 'function') {
+            touchmove();
+            return;
+        }
 
+        // console.log(`scrollDistance=${scrollDistance} direction=${this.direction} 当前scrollY=${this.scrollY}`);
     }
 
     /**
@@ -121,16 +135,53 @@ class Scrollable extends Component {
      */
     touchEndHandler(e) {
         console.log('Scrollable touchend');
-        let {touchend} = this.props;
-        if (typeof touchend === 'function') {
-            touchend();
-            return;
-        }
+
+        if(!this.canScroll) return;
+
         // 开始位置
         let beginScrollY = this.startY;
         // 滑动距离
         let scrollDistance = beginScrollY - e.changedTouches[0].clientY;
         this.scrollY = this.scrollY - scrollDistance;
+
+        // 滑动结束之后进行的一些判断
+        // 向上滑动
+        let initScrollY = this.props.initScrollY.replace('px','');
+        if(this.direction === 'up') {
+            if(this.scrollY >0 && this.scrollY <= initScrollY) {
+                setTimeout(()=>{
+                    this.scrollTo(0);
+                    this.scrollY = 0;
+                },50)
+            } else if(this.scrollY > initScrollY){
+                setTimeout(()=>{
+                    this.scrollTo(initScrollY)
+                    this.scrollY = initScrollY;
+                },50)
+            }
+        }
+        // 向下滑动
+        else if(this.direction === 'down') {
+            if(this.scrollY >0 && this.scrollY <= initScrollY) {
+                setTimeout(()=>{
+                    this.scrollTo(initScrollY);
+                    this.scrollY = initScrollY;
+                },50)
+            } else  if(this.scrollY > initScrollY){
+                setTimeout(()=>{
+                    this.scrollTo(this.webViewHeight);
+                    this.scrollY = this.webViewHeight;
+                },50)
+            }
+        }
+
+        this.setState({translateCss:this.translateCss});
+
+        let {touchend} = this.props;
+        if (typeof touchend === 'function') {
+            touchend();
+            return;
+        }
     }
 
     /**
@@ -144,6 +195,7 @@ class Scrollable extends Component {
     render() {
 
         let {wrapperHeight, wrapperStyle, initScrollY} = this.props;
+        let translateCss = this.state.translateCss;
 
         if(!wrapperHeight) {
             wrapperHeight = this.webViewHeight + 'px';
@@ -151,7 +203,8 @@ class Scrollable extends Component {
 
         wrapperStyle = Object.assign({}, wrapperStyle, {
             height: wrapperHeight,
-            transform: `translate3D(0,${initScrollY},0)`
+            transform: `translate3D(0,${initScrollY},0)`,
+            transition: translateCss
         });
 
         let container = (
@@ -159,7 +212,7 @@ class Scrollable extends Component {
                  onTouchStart={this.touchStartHandler.bind(this)} onTouchMove={this.touchMoveHandler.bind(this)}
                  onTouchEnd={this.touchEndHandler.bind(this)}
             >
-
+                {this.props.children}
             </div>
         );
 
