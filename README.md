@@ -103,6 +103,8 @@ react-template-easily
 	2018/01/08 添加preact版本，支持一键切换preact和react
 	2018/04/17 更新Header组件back按钮回退问题
 	2018/05/02 babel-preset-es2015 -> babel-preset-env
+	2018/06/06 新增Scrollable组件（可拖拽面板）
+	2018/06/06 新增ListView组件（基于Jroll2的list组件）
 
 
 ## developer ##
