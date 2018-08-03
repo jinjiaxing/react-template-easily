@@ -18,22 +18,6 @@ const verforTime = _d.getFullYear().toString() + (_d.getMonth() + 1).toString() 
 config.entry.main = [path.resolve(__dirname, './client/router.jsx')];
 
 config.plugins.push(
-    // 压缩打包的文件
-    new webpack.optimize.UglifyJsPlugin({
-        // 最紧凑的输出
-        beautify: false,
-        // 删除所有的注释
-        comments: false,
-        compress: {
-            // 在UglifyJs删除没有用到的代码时不输出警告
-            warnings: false,
-            // 删除所有的 `console` 语句
-            drop_console: true,
-        },
-        output: {
-            comments: false,  // remove all comments
-        },
-    }),
     // 独立打包样式文件
     new ExtractTextPlugin({filename: '[name].[hash].bundle.css?ver='+verforTime, disable: false, allChunks: true})
 );
@@ -73,4 +57,4 @@ config.module.rules.push(
 );
 config.mode = "production";
 
-module.exports = {config};
+module.exports = config;
