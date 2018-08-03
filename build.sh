@@ -3,7 +3,7 @@ rm -rf ./dist/*
 rm -rf product
 rm -rf webroot
 echo '--------开始进行webpack打包,请稍后...'
-webpack --config webpack.release.js --display-error-details --progress --colors
+webpack --config webpack.release.config.js --display-error-details --progress --colors
 echo '--------webpack打包完成'
 
 mkdir -p webroot/static/react-template-easily

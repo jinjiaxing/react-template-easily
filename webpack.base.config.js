@@ -80,8 +80,30 @@ let config = {
             }
         ]
     },
+    optimization: {
+        runtimeChunk: {
+            name: 'manifest'
+        },
+        splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            name: false,
+            cacheGroups: {
+                vendor: {
+                    name: 'vendor',
+                    chunks: 'initial',
+                    priority: -10,
+                    reuseExistingChunk: false,
+                    test: /node_modules\/(.*)\.js/
+                }
+            }
+        }
+    },
     plugins: [
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
         // 每次打包前，先清空原来目录中的内容
         new CleanWebpackPlugin([BUILD_PATH], { verbose: false }),
         // 打包html文件,动态加载js,拷贝到输出目录
@@ -89,16 +111,9 @@ let config = {
             filename: './index.html',
             template: './client/index.html',
             inject: 'body',
-            chunks: ['vendor', 'main']
-        }),
-        // 提取多个入口文件的公共脚本
-        new webpack.optimize.CommonsChunkPlugin(
-            {
-                name: 'vendor',
-                filename: 'runtime.[hash].js?ver=' + verforTime
-            }
-        )
+            chunks: ['vendor', 'main','manifest']
+        })
     ]
 };
 
-module.exports = {config:config ,verforTime:verforTime}
+module.exports = config;

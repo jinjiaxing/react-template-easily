@@ -11,8 +11,9 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // 读取同一目录下的 base config
-const config = require('./webpack.base.config').config;
-const verforTime = require('./webpack.base.config').verforTime;
+const config = require('./webpack.base.config.js');
+const _d = new Date();
+const verforTime = _d.getFullYear().toString() + (_d.getMonth() + 1).toString() + _d.getDate();
 
 config.entry.main = [path.resolve(__dirname, './client/router.jsx')];
 
@@ -32,12 +33,6 @@ config.plugins.push(
         output: {
             comments: false,  // remove all comments
         },
-    }),
-    // 开启全局的模块热替换(HMR)
-    new webpack.DefinePlugin({
-        "process.env": {
-            NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
-        }
     }),
     // 独立打包样式文件
     new ExtractTextPlugin({filename: '[name].[hash].bundle.css?ver='+verforTime, disable: false, allChunks: true})
@@ -76,5 +71,6 @@ config.module.rules.push(
         })
     }
 );
+config.mode = "production";
 
-module.exports = config;
+module.exports = {config};

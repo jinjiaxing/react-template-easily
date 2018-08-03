@@ -105,6 +105,7 @@ react-template-easily
 	2018/05/02 babel-preset-es2015 -> babel-preset-env
 	2018/06/06 新增Scrollable组件（可拖拽面板）
 	2018/06/06 新增ListView组件（基于Jroll2的list组件）
+	2018/08/03 升级webpack4
 
 
 ## developer ##

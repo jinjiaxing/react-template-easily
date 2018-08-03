@@ -55,14 +55,14 @@ class PageHome extends Component {
     }
 
     btnHandler() {
-        this.context.router.history.push(`test`);
+        this.props.history.push("/test");
     }
 
     render() {
         return (
             <div id='pagehome'>
                 <h1>react-template-easily!</h1>
-                <Button text="View Demo" onTouchTap={this.btnHandler.bind(this)}/>
+                <Button text="View Demo" onClick={this.btnHandler.bind(this)}/>
             </div>
         );
     }

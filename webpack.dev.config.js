@@ -8,7 +8,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 // 读取同一目录下的 base config
-const config = require('./webpack.base.config').config;
+const config = require('./webpack.base.config');
 
 config.entry.main= [
     // activate HMR for React
@@ -27,8 +27,10 @@ config.devServer = {
     host: "0.0.0.0",
     port: "8080",
     proxy: {},
-    // gzip
+    // enable gzip compression
     compress: true,
+    // hot module replacement. Depends on HotModuleReplacementPlugin
+    hot: true,
     disableHostCheck: true
 };
 
@@ -64,14 +66,9 @@ config.module.rules.push(
 );
 
 config.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    // 开启全局的模块热替换(HMR)
-    new webpack.DefinePlugin({
-        "process.env": {
-            NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-        }
-    })
+    new webpack.HotModuleReplacementPlugin()
 );
 
+config.mode = "development";
 
 module.exports = config;
