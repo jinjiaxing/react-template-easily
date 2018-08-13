@@ -27,15 +27,15 @@ react-template-easily
 ![截图](http://wx4.sinaimg.cn/mw690/dc462c65ly1fn2iivrwysg20ab0i5qj0.gif)
 
 ## 技术栈 ##
-* _react:16_
-* _react-dom:16_
-* _react-router-dom:4_
-* _redux:3.7.2_
-* _redux-thunk:2.2_
-* _react-redux:5.0.6_
+* _react:16.4.2_
+* _react-dom:16.4.2_
+* _react-router-dom:4.3.1_
+* _redux:4.0.0_
+* _redux-thunk:2.3.0_
+* _react-redux:5.0.7_
 * _sass_
 * _postcss_
-* _webpack:3.8.1_
+* _webpack:4.16.3_
 * _iscroll:5_
 * ...
 
